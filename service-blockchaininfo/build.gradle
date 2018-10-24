@@ -1,11 +1,16 @@
 apply from: "../kotlin-module.gradle"
+apply plugin: 'kotlinx-serialization'
 
 dependencies {
 
+    implementation project(':logger')
+    implementation project(':networking')
     implementation project(':domain')
 
     StandaloneModule.main.forEach { implementation it }
     StandaloneModule.unitTesting.forEach { testImplementation it }
 
+    implementation Dependencies.retrofit
+    implementation Dependencies.kotlinSerialization
 }
 
