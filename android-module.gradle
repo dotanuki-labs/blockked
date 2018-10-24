@@ -1,0 +1,78 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.adarshr.test-logger'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+android {
+
+    compileSdkVersion AndroidConfig.compileSdk
+
+    def currentVersion = Versioning.getVersion()
+
+    defaultConfig {
+        minSdkVersion AndroidConfig.minSdk
+        targetSdkVersion AndroidConfig.targetSdk
+        versionCode currentVersion.code
+        versionName currentVersion.name
+        testInstrumentationRunner AndroidConfig.instrumentationTestRunner
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+
+            lintOptions {
+                tasks.lint.enabled = false
+            }
+
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/main.kotlin_module'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'
+        disable 'OldTargetApi'
+    }
+
+    testOptions {
+
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+testlogger {
+    theme 'mocha'
+}
+
+configurations.all {
+    resolutionStrategy {
+        forcedModules = AndroidModule.main.toArray()
+    }
+}

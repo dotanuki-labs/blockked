@@ -1,0 +1,11 @@
+apply from: "../kotlin-module.gradle"
+
+dependencies {
+
+    implementation project(':domain')
+
+    StandaloneModule.main.forEach { implementation it }
+    StandaloneModule.unitTesting.forEach { testImplementation it }
+
+}
+

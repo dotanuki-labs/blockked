@@ -1,0 +1,24 @@
+apply plugin: 'kotlin'
+apply plugin: 'com.adarshr.test-logger'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+configurations.all {
+    resolutionStrategy {
+        forcedModules = StandaloneModule.main.toArray()
+    }
+}
+
+testlogger {
+    theme 'mocha'
+}

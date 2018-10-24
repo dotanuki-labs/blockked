@@ -1,1 +1,7 @@
 include ':app'
+include ':domain'
+include ':logger'
+include ':networking'
+include ':service-blockchaininfo'
+include ':features-common'
+include ':feature-dashboard'

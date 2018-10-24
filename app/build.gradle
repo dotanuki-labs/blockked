@@ -3,18 +3,31 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+
+    compileSdkVersion AndroidConfig.compileSdk
+
+    def currentVersion = Versioning.getVersion()
 
     defaultConfig {
-        applicationId "io.dotanuki.blockked"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId AndroidConfig.applicationId
+        minSdkVersion AndroidConfig.minSdk
+        targetSdkVersion AndroidConfig.targetSdk
+        versionCode currentVersion.code
+        versionName currentVersion.name
+        testInstrumentationRunner AndroidConfig.instrumentationTestRunner
     }
 
     buildTypes {
+
+        debug {
+            minifyEnabled false
+
+            lintOptions {
+                tasks.lint.enabled = false
+            }
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -24,12 +37,10 @@ android {
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation Dependencies.kotlinStdlib
+    implementation Dependencies.appCompat
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation TestDependencies.jUnit
+    androidTestImplementation TestDependencies.barista
 
 }

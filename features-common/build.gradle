@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+apply from: "../android-module.gradle"
+
+dependencies {
+
+    implementation project(':domain')
+
+    AndroidModule.main.forEach { implementation it }
+    AndroidModule.unitTesting.forEach { testImplementation it }
+    AndroidModule.androidTesting.forEach { androidTestImplementation it }
+
+}
