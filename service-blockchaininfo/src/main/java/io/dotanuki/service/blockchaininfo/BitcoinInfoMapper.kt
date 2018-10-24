@@ -20,16 +20,10 @@ internal object BitcoinInfoMapper {
         values
             .map {
                 BitcoinPrice(
-                    dayOfYear = toDate(it.timestamp),
+                    dayOfYear = Date(it.timestamp * 1000),
                     price = it.price,
                     currencyUnit = currency
                 )
             }
-
-    private fun toDate(timestamp: Long): Date {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = timestamp
-        return calendar.time
-    }
 
 }
