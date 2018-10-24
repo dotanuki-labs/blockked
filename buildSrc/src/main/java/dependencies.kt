@@ -41,11 +41,11 @@ object Dependencies {
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
     val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
 
-    val okhttp = "com.squareup.okhttp:okhttp:${Versions.okhttp}"
-    val okhttpInterceptor = "com.squareup.okhttp:logging-interceptor:${Versions.okhttp}"
-    val retrofit = "com.squareup.retrofit:retrofit:${Versions.retrofit}"
-    val retrofitRxAdapter = "com.squareup.retrofit:adapter-rxjava2:${Versions.retrofit}"
-    val retrofitKTXConverter = "com.jakewharton.retrofit:retrofit-kotlinx-serialization-converter:${Versions.retrofitKotlinxConverter}"
+    val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+    val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    val retrofitKTXConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitKotlinxConverter}"
 
     val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
 
