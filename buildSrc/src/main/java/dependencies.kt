@@ -68,7 +68,7 @@ object TestDependencies {
     val roboletric = "org.robolectric:robolectric:${Versions.roboletric}"
     val rxIdler = "com.squareup.rx.idler:rx2-idler:${Versions.rxEspressoIdler}"
     val barista = "com.schibsted.spain:barista:${Versions.barista}"
-    val mockWebServer = "com.squareup.okhttp:mockwebserver:${Versions.okhttp}"
+    val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
     val slf4jNoOp = "org.slf4j:slf4j-nop:${Versions.slf4j}"
 
 
