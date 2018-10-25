@@ -7,8 +7,6 @@ import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import java.text.SimpleDateFormat
-import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
 class BuildDashboardPresentationTests {
@@ -89,9 +87,5 @@ class BuildDashboardPresentationTests {
 
     }
 
-    private fun String.toDate(): Date {
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        return formatter.parse(this)
-    }
 
 }
