@@ -24,6 +24,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+            android:id="@+id/displayContainer"
             android:layout_marginLeft="8dp"
             android:layout_width="0dp"
             android:layout_weight="4"
