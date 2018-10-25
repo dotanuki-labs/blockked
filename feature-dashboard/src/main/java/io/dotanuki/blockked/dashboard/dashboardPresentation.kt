@@ -3,10 +3,8 @@ package io.dotanuki.blockked.dashboard
 import com.github.mikephil.charting.data.Entry
 
 data class DashboardPresentation(
-
     val display: DisplayModel,
     val chart: ChartModel
-
 )
 
 data class DisplayModel(
@@ -23,19 +21,8 @@ sealed class ChartModel {
         val minValue: Float,
         val maxValue: Float,
         val legend: String,
-        val values: List<Plottable>) : ChartModel() {
-
-        companion object {
-            const val PINCHZOOM_ENABLED = false
-            const val DESCRIPTION_ENABLED = false
-            const val XAXIS_ENABLED = false
-            const val LEFTAXIS_ENABLED = false
-            const val DRAW_BORDERS = false
-            const val DRAW_GRID_BACKGROUND = false
-            const val SHOW_ZERO_VALUE = false
-        }
-    }
-
+        val values: List<Plottable>) : ChartModel()
+    
 }
 
 // Because Entry from MPAndroidChart library does not implement equals() #sadpanda
