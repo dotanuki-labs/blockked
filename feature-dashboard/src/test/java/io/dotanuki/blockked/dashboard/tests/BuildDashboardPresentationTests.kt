@@ -40,14 +40,14 @@ class BuildDashboardPresentationTests {
         val expected = DashboardPresentation(
 
             display = DisplayModel(
-                formattedValue = "USD 6,511.32",
-                title = "Average market price across major bitcoin exchanges",
-                subtitle = "Reference date : 2018-10-23"
+                formattedValue = "6,511.32",
+                title = "Current BTC price",
+                subtitle = "Reference date : 2018-10-23\nAverage USD market price across major bitcoin exchanges."
             ),
 
             chart = ChartModel.AvaliableData(
-                minValue = 6481.425999999999f,
-                maxValue = 6511.321999999999f,
+                minValue = 6481.425999999999f - 100f,
+                maxValue = 6511.321999999999f + 100f,
                 legend = "Bitcoin price evolution (2018-10-21 to 2018-10-23)",
                 values = listOf(
                     PlottableEntry(1.0f, 6498.485833333333f),
@@ -77,9 +77,9 @@ class BuildDashboardPresentationTests {
         val expected = DashboardPresentation(
 
             display = DisplayModel(
-                formattedValue = "USD 6,498.49",
-                title = "Average market price across major bitcoin exchanges",
-                subtitle = "Reference date : 2018-10-21"
+                formattedValue = "6,498.49",
+                title = "Current BTC price",
+                subtitle = "Reference date : 2018-10-21\nAverage USD market price across major bitcoin exchanges."
             ),
 
             chart = ChartModel.Unavailable

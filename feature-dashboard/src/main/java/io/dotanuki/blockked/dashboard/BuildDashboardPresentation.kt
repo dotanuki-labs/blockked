@@ -13,8 +13,8 @@ object BuildDashboardPresentation {
 
             display = DisplayModel(
                 formattedValue = formatPrice(prices.last()),
-                title = formatTitle(providedDescription),
-                subtitle = formatSubtitle(prices.last())
+                title = "Current BTC price",
+                subtitle = formatSubtitle(prices.last(), providedDescription)
             ),
 
             chart = assembleChart(info)
@@ -45,26 +45,20 @@ object BuildDashboardPresentation {
         "Bitcoin price evolution (${formateDate(first.date)} to ${formateDate(last.date)})"
 
     private fun extractMaximum(prices: List<BitcoinPrice>) =
-        prices.map { it.price }.max()
-            ?.let { it }
+        prices.asSequence().map { it.price }.max()
+            ?.let { it + BIAS }
             ?: throw IllegalArgumentException("No maximum")
 
     private fun extractMinimum(prices: List<BitcoinPrice>) =
-        prices.map { it.price }.min()
-            ?.let { it }
+        prices.asSequence().map { it.price }.min()
+            ?.let { it - BIAS }
             ?: throw IllegalArgumentException("No minimum")
 
-    private fun formatSubtitle(last: BitcoinPrice) =
-        "Reference date : ${formateDate(last.date)}"
-
-    private fun formatTitle(description: String) =
-        description
-            .replace("USD ", "")
-            .replace(".", "")
-
+    private fun formatSubtitle(last: BitcoinPrice, providedDescription: String) =
+        "Reference date : ${formateDate(last.date)}\n$providedDescription"
 
     private fun formatPrice(last: BitcoinPrice) = with(last) {
-        "$currencyUnit ${priceFormatter.format(price).replace("$","")}"
+        priceFormatter.format(price).replace("$", "")
     }
 
     private fun formateDate(target: Date) = dateFormatter.format(target)
@@ -72,4 +66,6 @@ object BuildDashboardPresentation {
     private val priceFormatter = NumberFormat.getCurrencyInstance(Locale.US)
 
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
+
+    private const val BIAS = 100f
 }

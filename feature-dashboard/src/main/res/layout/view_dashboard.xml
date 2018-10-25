@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:padding="16dp"
         android:layout_width="match_parent"
@@ -20,8 +20,8 @@
                     android:id="@+id/displayTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Current Bitcoin Price"
-                    android:maxLines="1"
+                    tools:text="Current Bitcoin Price"
+                    android:maxLines="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 
@@ -29,20 +29,20 @@
                     android:id="@+id/displayValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="USD 2500.00"
+                    tools:text="USD 2500.00"
                     android:maxLines="1"
+                    android:textColor="@color/colorAccent"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             />
 
             <TextView
                     android:id="@+id/displaySubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reference date : October-23 (2018)"
-                    android:maxLines="1"
+                    tools:text="Reference date : October-23 (2018)"
                     android:textStyle="italic"
                     android:textSize="12sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
