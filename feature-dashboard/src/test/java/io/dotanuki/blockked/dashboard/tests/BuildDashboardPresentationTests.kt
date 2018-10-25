@@ -3,6 +3,7 @@ package io.dotanuki.blockked.dashboard.tests
 import io.dotanuki.blockked.dashboard.*
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.common.toDate
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith

@@ -1,9 +1,9 @@
-package io.dotanuki.blockked.dashboard.tests
+package io.dotanuki.common
 
 import java.text.SimpleDateFormat
 import java.util.*
 
-internal fun String.toDate(): Date {
+fun String.toDate(): Date {
     val formatter = SimpleDateFormat("yyyy-MM-dd")
     return formatter.parse(this)
 }
