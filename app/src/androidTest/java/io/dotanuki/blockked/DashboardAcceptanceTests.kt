@@ -2,9 +2,7 @@ package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
 import io.dotanuki.blockked.dashboard.DashboardActivity
-import io.dotanuki.blockked.domain.BitcoinBroker
-import io.dotanuki.blockked.domain.BitcoinInfo
-import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.*
 import io.dotanuki.blockked.rules.BindingsOverwriter
 import io.dotanuki.blockked.rules.ScreenLauncher
 import io.dotanuki.common.toDate
@@ -18,12 +16,12 @@ class DashboardAcceptanceTests {
     private val broker = mock<BitcoinBroker>()
 
     @get:Rule val launcher = ScreenLauncher(DashboardActivity::class)
+
     @get:Rule val overwriter = BindingsOverwriter {
 
         bind<BitcoinBroker>(overrides = true) with provider {
             broker
         }
-
     }
 
     val infoForGraphAndDisplay = BitcoinInfo(
@@ -113,36 +111,20 @@ class DashboardAcceptanceTests {
     }
 
     @Test fun atDashboardLaunch_givenNetworkingError_thenErrorReported() {
-
-        given(broker) {
-            defineScenario {
-                criteria = NetworkRequestTimedOut
-            }
-        }
-
-        launcher.launchScreen()
-
-        assertThat {
-
-            loadingIndicator {
-                should be hidden
-            }
-
-            errorReport {
-                should be displayed
-            }
-
-            dashboard {
-                should have noEntries
-            }
-        }
+        val networkingError = NetworkingIssue.OperationTimeout
+        checkErrorState(networkingError)
     }
 
     @Test fun atDashboardLaunch_givenIntegrationError_thenErrorReported() {
+        val integrationError = BlockchainInfoIntegrationIssue.RemoteSystem
+        checkErrorState(integrationError)
+    }
+
+    private fun checkErrorState(error: Throwable) {
 
         given(broker) {
             defineScenario {
-                criteria = BlockchainInfoIsDown
+                criteria = IssueFound(error)
             }
         }
 
@@ -155,7 +137,7 @@ class DashboardAcceptanceTests {
             }
 
             errorReport {
-                should be displayed
+                should be displayedWith(error.toString())
             }
 
             dashboard {

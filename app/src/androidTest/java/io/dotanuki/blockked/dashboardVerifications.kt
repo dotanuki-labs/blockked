@@ -23,7 +23,9 @@ class LoadingStateVerifier {
 }
 
 class LoadingStateChecks {
+
     infix fun be(target: Visibility) = when (target) {
+        is displayedWith -> assertDisplayed(target.message)
         is displayed -> assertDisplayed(R.id.loadingIndication)
         is hidden -> assertNotDisplayed(R.id.loadingIndication)
     }
@@ -38,7 +40,9 @@ class DashboardContentVerifier {
 }
 
 class ErrorStateChecks {
+
     infix fun be(target: Visibility) = when (target) {
+        is displayedWith -> assertDisplayed(target.message)
         is displayed -> assertDisplayed(R.id.errorStateLabel)
         is hidden -> assertNotDisplayed(R.id.errorStateLabel)
     }
@@ -70,6 +74,7 @@ class DashboardContentCheck {
 sealed class Visibility
 object hidden : Visibility()
 object displayed : Visibility()
+class displayedWith(val message: String) : Visibility()
 
 sealed class DashboardContent
 data class OnlyDisplay(val bitcoinValue: String) : DashboardContent()

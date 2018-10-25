@@ -3,7 +3,6 @@ package io.dotanuki.blockked
 import com.nhaarman.mockitokotlin2.whenever
 import io.dotanuki.blockked.domain.BitcoinBroker
 import io.dotanuki.blockked.domain.BitcoinInfo
-import io.dotanuki.blockked.domain.NetworkingIssue
 import io.reactivex.Observable
 
 fun given(broker: BitcoinBroker, block: ScenarioHook.() -> Unit) =
@@ -21,8 +20,7 @@ class Scenario(private val composer: ScenarioComposer) {
 
     fun configure() {
         when (criteria) {
-            is NetworkRequestTimedOut -> composer.networkingTimedOut()
-            is BlockchainInfoIsDown -> composer.remoteServerDown()
+            is IssueFound -> composer.fetchFailed(criteria as IssueFound)
             is DataFechted -> composer.marketPriceFetched(criteria as DataFechted)
         }
     }
@@ -30,25 +28,18 @@ class Scenario(private val composer: ScenarioComposer) {
 
 
 sealed class HandledCondition
-object NetworkRequestTimedOut : HandledCondition()
-object BlockchainInfoIsDown : HandledCondition()
+class IssueFound(val error: Throwable) : HandledCondition()
 class DataFechted(val info: BitcoinInfo) : HandledCondition()
 
 class ScenarioComposer(private val broker: BitcoinBroker) {
 
-    fun networkingTimedOut() {
+    fun fetchFailed(condition: IssueFound) {
         whenever(broker.marketPrice())
             .thenReturn(
-                Observable.error(NetworkingIssue.OperationTimeout)
+                Observable.error(condition.error)
             )
     }
 
-    fun remoteServerDown() {
-        whenever(broker.marketPrice())
-            .thenReturn(
-                Observable.error(NetworkingIssue.ConnectionSpike)
-            )
-    }
 
     fun marketPriceFetched(data: DataFechted) {
         whenever(broker.marketPrice()).thenReturn(
