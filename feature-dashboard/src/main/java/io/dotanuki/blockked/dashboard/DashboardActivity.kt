@@ -8,6 +8,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import io.dotanuki.blockked.dashboard.ChartModel.AvaliableData
 import io.dotanuki.blockked.dashboard.ChartModel.Unavailable
+import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*
 import io.dotanuki.logger.Logger
 import io.reactivex.rxkotlin.subscribeBy
@@ -47,7 +49,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun changeState(event: UIEvent<DashboardPresentation>) {
-        when(event) {
+        when (event) {
             is InFlight -> startExecution()
             is Result -> presentDashboard(event.value)
             is Failed -> reportError(event.reason)
@@ -58,6 +60,14 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun reportError(reason: Throwable) {
         logger.e("Error -> $reason")
+
+        when (reason) {
+            is NetworkingIssue,
+            is BlockchainInfoIntegrationIssue -> errorStateLabel.apply {
+                visibility = View.VISIBLE
+                text = reason.toString()
+            }
+        }
     }
 
     private fun presentDashboard(presentation: DashboardPresentation) {
