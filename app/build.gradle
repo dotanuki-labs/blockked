@@ -2,6 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
 android {
 
     compileSdkVersion AndroidConfig.compileSdk
@@ -38,9 +43,13 @@ android {
 dependencies {
 
     implementation Dependencies.kotlinStdlib
-    implementation Dependencies.appCompat
+    implementation project(':feature-dashboard')
 
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.barista
 
+}
+
+androidExtensions {
+    experimental = true
 }

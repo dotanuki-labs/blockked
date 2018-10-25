@@ -15,7 +15,8 @@ internal object Versions {
     const val okhttp = "3.11.0"
     const val retrofit = "2.4.0"
     const val retrofitKotlinxConverter = "0.0.1"
-    const val supportLibrary = "28.0.0"
+    const val supportLibrary = "27.1.1"
+    const val mpAndroidChart = "v3.0.3"
     const val jUnit4 = "4.12"
     const val burster = "0.1.0"
     const val assertJ = "2.9.1"
@@ -48,6 +49,8 @@ object Dependencies {
     val retrofitKTXConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitKotlinxConverter}"
 
     val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
+    val cardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
+    val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
@@ -93,6 +96,7 @@ object AndroidModule {
         Dependencies.rxKotlin,
         Dependencies.rxAndroid,
         Dependencies.appCompat,
+        Dependencies.cardView,
         Dependencies.kodein,
         Dependencies.kodeinConf
     )

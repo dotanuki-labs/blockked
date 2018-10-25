@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:background="@color/screenBG"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/displayTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current Bitcoin Price"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            />
+
+            <TextView
+                    android:id="@+id/displayValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="USD 2500.00"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            />
+
+            <TextView
+                    android:id="@+id/displaySubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reference date : October-23 (2018)"
+                    android:maxLines="1"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.github.mikephil.charting.charts.LineChart
+                android:layout_margin="8dp"
+                android:id="@+id/bitcoinPriceChart"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"/>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -4,9 +4,12 @@ apply from: "../android-module.gradle"
 dependencies {
 
     implementation project(':domain')
+    implementation project(':features-common')
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }
 
+    implementation Dependencies.mpAndroidChart
+    testImplementation TestDependencies.roboletric
 }
