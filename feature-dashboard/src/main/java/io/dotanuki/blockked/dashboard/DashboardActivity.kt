@@ -15,23 +15,21 @@ import io.dotanuki.logger.Logger
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.view_dashboard.*
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.direct
+import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(), KodeinAware {
 
-    private val dependencies by lazy {
-        (application as KodeinAware).kodein.direct
+    private val graph by closestKodein()
+
+    override val kodein = Kodein.lazy {
+        extend(graph)
     }
 
-    private val logger by lazy {
-        dependencies.instance<Logger>()
-    }
-
-    private val viewModel by lazy {
-        dependencies.instance<DashboardViewModel>()
-    }
+    private val logger by kodein.instance<Logger>()
+    private val viewModel by kodein.instance<DashboardViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +71,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun presentDashboard(presentation: DashboardPresentation) {
         dashboarView.visibility = View.VISIBLE
         val (display, chart) = presentation
-        present(display)
+        presentDisplay(display)
         presentChart(chart)
 
     }
@@ -113,7 +111,7 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun present(display: DisplayModel) {
+    private fun presentDisplay(display: DisplayModel) {
         displayTitle.text = display.title
         displayValue.text = display.formattedValue
         displaySubtitle.text = display.subtitle

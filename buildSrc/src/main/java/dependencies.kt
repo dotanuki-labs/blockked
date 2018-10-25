@@ -54,6 +54,7 @@ object Dependencies {
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
+    val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-core:${Versions.kodeinDI}"
 
 }
 
@@ -98,6 +99,7 @@ object AndroidModule {
         Dependencies.appCompat,
         Dependencies.cardView,
         Dependencies.kodein,
+        Dependencies.kodeinAndroid,
         Dependencies.kodeinConf
     )
 
