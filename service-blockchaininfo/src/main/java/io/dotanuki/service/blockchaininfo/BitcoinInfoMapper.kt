@@ -20,7 +20,7 @@ internal object BitcoinInfoMapper {
         values
             .map {
                 BitcoinPrice(
-                    dayOfYear = Date(it.timestamp * 1000),
+                    date = Date(it.timestamp * 1000),
                     price = it.price,
                     currencyUnit = currency
                 )

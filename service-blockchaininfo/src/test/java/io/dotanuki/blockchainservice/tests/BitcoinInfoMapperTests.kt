@@ -36,12 +36,12 @@ class BitcoinInfoMapperTests {
             providedDescription = "Average USD market price across major bitcoin exchanges.",
             prices = listOf(
                 BitcoinPrice(
-                    dayOfYear = "2018-10-21T22:00:00".toDate(),
+                    date = "2018-10-21T22:00:00".toDate(),
                     price = 6498.485833333333f,
                     currencyUnit = "USD"
                 ),
                 BitcoinPrice(
-                    dayOfYear = "2018-10-22T22:00:00".toDate(),
+                    date = "2018-10-22T22:00:00".toDate(),
                     price = 6481.425999999999f,
                     currencyUnit = "USD"
                 )
