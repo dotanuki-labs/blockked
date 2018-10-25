@@ -45,11 +45,12 @@ dependencies {
     implementation project(':logger')
     implementation project(':feature-dashboard')
 
-    implementation Dependencies.kotlinStdlib
-    implementation Dependencies.kodein
+    AndroidModule.main.forEach { implementation it }
+    AndroidModule.unitTesting.forEach { testImplementation it }
+    AndroidModule.androidTesting.forEach { androidTestImplementation it }
 
-    testImplementation TestDependencies.jUnit
-    androidTestImplementation TestDependencies.barista
+    androidTestImplementation project(':domain')
+    androidTestImplementation project(':features-common')
 
 }
 

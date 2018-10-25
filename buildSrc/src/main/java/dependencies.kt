@@ -53,6 +53,7 @@ object Dependencies {
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
+    val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
 
 }
 
@@ -96,7 +97,8 @@ object AndroidModule {
         Dependencies.rxAndroid,
         Dependencies.appCompat,
         Dependencies.cardView,
-        Dependencies.kodein
+        Dependencies.kodein,
+        Dependencies.kodeinConf
     )
 
     val unitTesting = listOf(

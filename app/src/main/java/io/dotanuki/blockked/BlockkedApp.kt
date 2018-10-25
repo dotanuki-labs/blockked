@@ -3,16 +3,14 @@ package io.dotanuki.blockked
 import android.app.Application
 import io.dotanuki.blockked.dashboard.di.dashboardModule
 import io.dotanuki.blockked.di.loggerModule
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
+import org.kodein.di.conf.ConfigurableKodein
 
-class BlocckedApp : Application(), KodeinAware {
+class BlockkedApp : Application(), KodeinAware {
 
-    var overrideBindings: Kodein.MainBuilder.() -> Unit = {}
-
-    override val kodein = Kodein {
-        import(loggerModule)
-        import(dashboardModule)
+    override val kodein =  ConfigurableKodein(mutable = true).apply {
+        addImport(loggerModule)
+        addImport(dashboardModule)
     }
 
 }
