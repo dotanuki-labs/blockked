@@ -43,7 +43,7 @@ object Dependencies {
     val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
 
     val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+    val okhttpLogger = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     val retrofitKTXConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitKotlinxConverter}"
@@ -53,7 +53,6 @@ object Dependencies {
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
-    val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
 
 }
 
@@ -97,8 +96,7 @@ object AndroidModule {
         Dependencies.rxAndroid,
         Dependencies.appCompat,
         Dependencies.cardView,
-        Dependencies.kodein,
-        Dependencies.kodeinConf
+        Dependencies.kodein
     )
 
     val unitTesting = listOf(
@@ -130,8 +128,7 @@ object StandaloneModule {
         Dependencies.kotlinStdlib,
         Dependencies.rxJava,
         Dependencies.rxKotlin,
-        Dependencies.kodein,
-        Dependencies.kodeinConf
+        Dependencies.kodein
     )
 
     val unitTesting = listOf(
