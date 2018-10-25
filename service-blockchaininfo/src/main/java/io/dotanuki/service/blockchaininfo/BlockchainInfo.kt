@@ -6,6 +6,10 @@ import retrofit2.http.GET
 
 internal interface BlockchainInfo {
 
-    @GET("charts/market-price?format=json") fun marketPrice(): Observable<MarketPriceResponse>
+    @GET("charts/market-price?timespan=4weeks&format=json") fun marketPrice(): Observable<MarketPriceResponse>
 
+
+    companion object {
+        const val API_URL = "https://api.blockchain.info/"
+    }
 }

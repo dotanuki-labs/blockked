@@ -8,6 +8,7 @@ dependencies {
     StandaloneModule.unitTesting.forEach { testImplementation it }
 
     implementation Dependencies.okhttp
+    implementation Dependencies.okhttpLogger
     implementation Dependencies.retrofit
     implementation Dependencies.retrofitKTXConverter
     implementation Dependencies.retrofitRxAdapter

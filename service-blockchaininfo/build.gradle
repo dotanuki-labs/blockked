@@ -10,7 +10,7 @@ dependencies {
     StandaloneModule.main.forEach { implementation it }
     StandaloneModule.unitTesting.forEach { testImplementation it }
 
-    implementation Dependencies.okhttpInterceptor
+    implementation Dependencies.okhttpLogger
     implementation Dependencies.retrofit
     implementation Dependencies.kotlinSerialization
     testImplementation TestDependencies.mockWebServer

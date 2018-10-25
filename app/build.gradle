@@ -42,8 +42,11 @@ android {
 
 dependencies {
 
-    implementation Dependencies.kotlinStdlib
+    implementation project(':logger')
     implementation project(':feature-dashboard')
+
+    implementation Dependencies.kotlinStdlib
+    implementation Dependencies.kodein
 
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.barista

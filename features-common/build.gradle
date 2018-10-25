@@ -4,6 +4,7 @@ apply from: "../android-module.gradle"
 dependencies {
 
     implementation project(':domain')
+    implementation project(':service-blockchaininfo')
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }

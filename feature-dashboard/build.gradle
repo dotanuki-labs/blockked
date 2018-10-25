@@ -4,6 +4,7 @@ apply from: "../android-module.gradle"
 dependencies {
 
     implementation project(':domain')
+    implementation project(':logger')
     implementation project(':features-common')
 
     AndroidModule.main.forEach { implementation it }
