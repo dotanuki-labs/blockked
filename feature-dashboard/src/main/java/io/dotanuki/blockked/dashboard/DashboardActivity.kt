@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.view_dashboard.*
 
 class DashboardActivity : AppCompatActivity() {
 
