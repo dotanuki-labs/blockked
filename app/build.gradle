@@ -20,13 +20,26 @@ android {
         versionCode currentVersion.code
         versionName currentVersion.name
         testInstrumentationRunner AndroidConfig.instrumentationTestRunner
+
+        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.generatedDensities = []
+
+        archivesBaseName = "app-${currentVersion.name}"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../dotanuki-demos.jks")
+            storePassword "dotanuki"
+            keyAlias 'dotanuki-alias'
+            keyPassword "dotanuki"
+        }
     }
 
     buildTypes {
 
         debug {
             minifyEnabled false
-
             lintOptions {
                 tasks.lint.enabled = false
             }
@@ -34,9 +47,13 @@ android {
         }
 
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles file('../proguard').listFiles().toList().toArray()
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
+
     }
 }
 

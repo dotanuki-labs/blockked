@@ -19,6 +19,9 @@ android {
         versionCode currentVersion.code
         versionName currentVersion.name
         testInstrumentationRunner AndroidConfig.instrumentationTestRunner
+
+        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.generatedDensities = []
     }
 
     buildTypes {
@@ -33,8 +36,9 @@ android {
         }
 
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles file('../proguard').listFiles().toList().toArray()
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
 
