@@ -41,11 +41,6 @@ captures/
 .idea/dictionaries
 .idea/libraries
 
-# Keystore files
-*.jks
-!test_keystore.jks
-!release_keystore.jks
-keystore.properties
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
