@@ -3,6 +3,7 @@ package io.dotanuki.blockked.dashboard
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -62,8 +63,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
         when (reason) {
             is NetworkingIssue,
             is BlockchainInfoIntegrationIssue -> errorStateLabel.apply {
-                visibility = View.VISIBLE
-                text = reason.toString()
+                Toast.makeText(this@DashboardActivity, "$reason", Toast.LENGTH_LONG).show()
             }
         }
     }

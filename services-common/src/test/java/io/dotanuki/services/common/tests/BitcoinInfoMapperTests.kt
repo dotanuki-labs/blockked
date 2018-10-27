@@ -1,10 +1,10 @@
-package io.dotanuki.blockchainservice.tests
+package io.dotanuki.services.common.tests
 
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.services.common.BTCPriceResponse
 import io.dotanuki.services.common.BitcoinInfoMapper
-import io.dotanuki.service.blockchaininfo.models.BTCPriceResponse
-import io.dotanuki.service.blockchaininfo.models.MarketPriceResponse
+import io.dotanuki.services.common.MarketPriceResponse
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Test
 import java.text.SimpleDateFormat

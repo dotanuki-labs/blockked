@@ -1,6 +1,5 @@
 package io.dotanuki.blockked.dashboard
 
-import io.dotanuki.blockked.domain.BitcoinBroker
 import io.dotanuki.common.StateMachine
 
 class DashboardViewModel(

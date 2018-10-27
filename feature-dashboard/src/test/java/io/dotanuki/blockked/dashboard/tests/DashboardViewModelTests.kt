@@ -2,9 +2,9 @@ package io.dotanuki.blockked.dashboard.tests
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.dashboard.BuildDashboardPresentation
 import io.dotanuki.blockked.dashboard.DashboardViewModel
-import io.dotanuki.blockked.domain.BitcoinBroker
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.blockked.domain.NetworkingIssue

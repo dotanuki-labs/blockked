@@ -1,9 +1,10 @@
-package io.dotanuki.service.blockchaininfo
+package io.dotanuki.services.common
 
+import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
 import java.util.*
 
-internal object BitcoinInfoMapper {
+object BitcoinInfoMapper {
 
     operator fun invoke(response: MarketPriceResponse) = with(response) {
         BitcoinInfo(
