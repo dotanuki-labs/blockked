@@ -15,9 +15,6 @@ class PersistantCache(context: Context) : CacheService {
         Hawk.put(key.toString(), value)
     }
 
-    override fun <T> retrieveOrDefault(key: CacheEntry, fallback: T): T =
-        Hawk.get(key.toString(), fallback)
-
     override fun <T> retrieveOrNull(key: CacheEntry): T? =
         Hawk.get(key.toString())
 
