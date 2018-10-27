@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
             android:id="@+id/displayContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -50,9 +50,9 @@
             />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
             android:id="@+id/chartContainer"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
@@ -64,6 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"/>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

@@ -15,7 +15,7 @@ internal object Versions {
     const val okhttp = "3.11.0"
     const val retrofit = "2.4.0"
     const val retrofitKotlinxConverter = "0.0.1"
-    const val supportLibrary = "27.1.1"
+    const val supportLibrary = "1.0.0"
     const val mpAndroidChart = "v3.0.3"
     const val hawk = "2.0.1"
     const val jUnit4 = "4.12"
@@ -49,14 +49,14 @@ object Dependencies {
     val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     val retrofitKTXConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitKotlinxConverter}"
 
-    val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
-    val cardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
+    val appCompat = "androidx.appcompat:appcompat:${Versions.supportLibrary}"
+    val cardView = "androidx.cardview:cardview:${Versions.supportLibrary}"
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
     val hawk = "com.orhanobut:hawk:${Versions.hawk}"
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
-    val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-core:${Versions.kodeinDI}"
+    val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodeinDI}"
 
 }
 
