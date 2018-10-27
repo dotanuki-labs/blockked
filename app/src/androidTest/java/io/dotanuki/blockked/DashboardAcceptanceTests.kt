@@ -1,8 +1,12 @@
 package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
+import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.dashboard.DashboardActivity
-import io.dotanuki.blockked.domain.*
+import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.blockked.rules.BindingsOverwriter
 import io.dotanuki.blockked.rules.ScreenLauncher
 import io.dotanuki.common.toDate
@@ -136,9 +140,9 @@ class DashboardAcceptanceTests {
                 should be hidden
             }
 
-            errorReport {
-                should be displayedWith(error.toString())
-            }
+//            errorReport {
+//                should be displayedWith(error.toString())
+//            }
 
             dashboard {
                 should have noEntries

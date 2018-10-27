@@ -10,6 +10,7 @@ repositories {
 android {
 
     compileSdkVersion AndroidConfig.compileSdk
+    testOptions.unitTests.includeAndroidResources = true
 
     def currentVersion = Versioning.getVersion()
 
