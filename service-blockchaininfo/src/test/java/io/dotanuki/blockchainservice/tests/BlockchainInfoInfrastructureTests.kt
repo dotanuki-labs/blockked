@@ -17,14 +17,14 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-internal class BrokerInfrastructureTests {
+internal class BlockchainInfoInfrastructureTests {
 
     @get:Rule val rule = InfrastructureRule()
 
-    lateinit var broker: BrokerInfrastructure
+    lateinit var infrastructure: BrokerInfrastructure
 
     @Before fun `before each test`() {
-        broker = BrokerInfrastructure(
+        infrastructure = BrokerInfrastructure(
             service = rule.api,
             errorHandler = ExecutionErrorHandler(ConsoleLogger)
         )
@@ -37,7 +37,7 @@ internal class BrokerInfrastructureTests {
             response = loadFile("200OK-market-price.json")
         )
 
-        given(broker.averageBitcoinPrice()) {
+        given(infrastructure.averageBitcoinPrice()) {
 
             assertThatSequence {
                 should be completed
@@ -64,7 +64,7 @@ internal class BrokerInfrastructureTests {
                     response = loadFile(json)
                 )
 
-                given(broker.averageBitcoinPrice()) {
+                given(infrastructure.averageBitcoinPrice()) {
 
                     assertThatSequence {
                         should be broken
