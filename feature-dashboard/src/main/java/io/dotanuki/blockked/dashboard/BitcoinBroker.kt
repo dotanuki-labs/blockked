@@ -8,8 +8,7 @@ import io.reactivex.Observable
 
 class BitcoinBroker(
     private val cache: CacheService,
-    private val blockchainInfo: BlockchainInfoService
-) {
+    private val blockchainInfo: BlockchainInfoService) {
 
     fun marketPrice() =
         cache.retrieveOrNull<BitcoinInfo>(KEY)
