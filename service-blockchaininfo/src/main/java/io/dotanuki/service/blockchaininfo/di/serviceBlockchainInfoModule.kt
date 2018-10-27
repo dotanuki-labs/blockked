@@ -1,6 +1,6 @@
 package io.dotanuki.service.blockchaininfo.di
 
-import io.dotanuki.blockked.domain.BitcoinBroker
+import io.dotanuki.blockked.domain.services.BlockchainInfoService
 import io.dotanuki.networking.BuildRetrofit
 import io.dotanuki.networking.di.networkingModule
 import io.dotanuki.service.blockchaininfo.BlockchainInfo
@@ -27,7 +27,7 @@ val blockchainInfoModule = Kodein.Module("service-blockchainfo") {
         retrofit.create(BlockchainInfo::class.java)
     }
 
-    bind<BitcoinBroker>() with provider {
+    bind<BlockchainInfoService>() with provider {
         BrokerInfrastructure(
             targetScheduler = Schedulers.io(),
             service = instance(),

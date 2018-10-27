@@ -1,6 +1,6 @@
 package io.dotanuki.service.blockchaininfo
 
-import io.dotanuki.service.blockchaininfo.models.MarketPriceResponse
+import io.dotanuki.services.common.MarketPriceResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 

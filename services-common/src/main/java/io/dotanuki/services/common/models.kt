@@ -1,10 +1,10 @@
-package io.dotanuki.service.blockchaininfo.models
+package io.dotanuki.services.common
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class MarketPriceResponse(
+data class MarketPriceResponse(
     val name: String,
     val description: String,
     val unit: String,
@@ -12,7 +12,7 @@ internal data class MarketPriceResponse(
 )
 
 @Serializable
-internal data class BTCPriceResponse(
+data class BTCPriceResponse(
     @SerialName("x") val timestamp: Long,
     @SerialName("y") val price: Float
 )

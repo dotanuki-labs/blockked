@@ -37,7 +37,7 @@ internal class BrokerInfrastructureTests {
             response = loadFile("200OK-market-price.json")
         )
 
-        given(broker.marketPrice()) {
+        given(broker.averageBitcoinPrice()) {
 
             assertThatSequence {
                 should be completed
@@ -64,7 +64,7 @@ internal class BrokerInfrastructureTests {
                     response = loadFile(json)
                 )
 
-                given(broker.marketPrice()) {
+                given(broker.averageBitcoinPrice()) {
 
                     assertThatSequence {
                         should be broken

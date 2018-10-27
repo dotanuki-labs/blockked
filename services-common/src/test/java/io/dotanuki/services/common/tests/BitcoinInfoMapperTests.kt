@@ -2,7 +2,7 @@ package io.dotanuki.blockchainservice.tests
 
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
-import io.dotanuki.service.blockchaininfo.BitcoinInfoMapper
+import io.dotanuki.services.common.BitcoinInfoMapper
 import io.dotanuki.service.blockchaininfo.models.BTCPriceResponse
 import io.dotanuki.service.blockchaininfo.models.MarketPriceResponse
 import org.assertj.core.api.Java6Assertions.assertThat

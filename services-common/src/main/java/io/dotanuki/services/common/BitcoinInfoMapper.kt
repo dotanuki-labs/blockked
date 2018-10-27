@@ -1,9 +1,6 @@
 package io.dotanuki.service.blockchaininfo
 
-import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
-import io.dotanuki.service.blockchaininfo.models.BTCPriceResponse
-import io.dotanuki.service.blockchaininfo.models.MarketPriceResponse
 import java.util.*
 
 internal object BitcoinInfoMapper {

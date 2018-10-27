@@ -17,6 +17,7 @@ internal object Versions {
     const val retrofitKotlinxConverter = "0.0.1"
     const val supportLibrary = "27.1.1"
     const val mpAndroidChart = "v3.0.3"
+    const val hawk = "2.0.1"
     const val jUnit4 = "4.12"
     const val burster = "0.1.0"
     const val assertJ = "2.9.1"
@@ -51,6 +52,7 @@ object Dependencies {
     val appCompat = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
     val cardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
+    val hawk = "com.orhanobut:hawk:${Versions.hawk}"
 
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"

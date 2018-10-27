@@ -6,6 +6,7 @@ dependencies {
     implementation project(':logger')
     implementation project(':networking')
     implementation project(':domain')
+    implementation project(':services-common')
 
     StandaloneModule.main.forEach { implementation it }
     StandaloneModule.unitTesting.forEach { testImplementation it }
