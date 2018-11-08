@@ -1,15 +1,16 @@
 package io.dotanuki.blockked.dashboard
 
+import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.common.StateMachine
 
 class DashboardViewModel(
     private val machine: StateMachine<DashboardPresentation>,
-    private val broker: BitcoinBroker) {
+    private val broker: FetchBitcoinStatistic) {
 
 
     fun retrieveDashboard() =
         broker
-            .marketPrice()
+            .execute()
             .map { BuildDashboardPresentation(it) }
             .compose(machine)
 

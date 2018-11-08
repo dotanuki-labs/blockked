@@ -12,7 +12,8 @@ import java.util.*
 
 class BitcoinInfoMapperTests {
 
-    @Test fun `should map to Bitcoininfo from parsed MarketPrice model`() {
+    @Test
+    fun `should map to Bitcoininfo from parsed MarketPrice model`() {
 
         val response = MarketPriceResponse(
             name = "Market Price (USD)",
@@ -36,12 +37,12 @@ class BitcoinInfoMapperTests {
             providedDescription = "Average USD market price across major bitcoin exchanges.",
             prices = listOf(
                 BitcoinPrice(
-                    date = "2018-10-21T22:00:00".toDate(),
+                    date = "2018-10-21".toDate(),
                     price = 6498.485833333333f,
                     currencyUnit = "USD"
                 ),
                 BitcoinPrice(
-                    date = "2018-10-22T22:00:00".toDate(),
+                    date = "2018-10-22".toDate(),
                     price = 6481.425999999999f,
                     currencyUnit = "USD"
                 )
@@ -52,8 +53,17 @@ class BitcoinInfoMapperTests {
     }
 
     private fun String.toDate(): Date {
-        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        return formatter.parse(this)
+
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val parsed = formatter.parse(this)
+        val calendar = Calendar.getInstance().apply {
+            time = parsed
+            set(Calendar.HOUR_OF_DAY, 12)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        return calendar.time
     }
 
 }

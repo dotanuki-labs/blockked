@@ -1,7 +1,6 @@
 package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.whenever
-import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.reactivex.Observable
 

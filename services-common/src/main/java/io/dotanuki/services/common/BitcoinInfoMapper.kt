@@ -18,10 +18,23 @@ object BitcoinInfoMapper {
         values
             .map {
                 BitcoinPrice(
-                    date = Date(it.timestamp * 1000),
+                    date = assembleUTCDate(it.timestamp),
                     price = it.price,
                     currencyUnit = currency
                 )
             }
+
+    private fun assembleUTCDate(timestamp: Long): Date {
+        val timeDoesNotMatter = Date(timestamp * 1000)
+
+        val calendar = Calendar.getInstance().apply {
+            time = timeDoesNotMatter
+            set(Calendar.HOUR_OF_DAY, 12)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        return calendar.time
+    }
 
 }

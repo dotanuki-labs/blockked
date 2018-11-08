@@ -2,11 +2,11 @@ package io.dotanuki.blockked.dashboard.tests
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.dashboard.BuildDashboardPresentation
 import io.dotanuki.blockked.dashboard.DashboardViewModel
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*
 import io.reactivex.Observable
@@ -19,7 +19,7 @@ class DashboardViewModelTests {
 
     lateinit var viewModel: DashboardViewModel
 
-    val mockedBrocker = mock<BitcoinBroker>()
+    val mockedBrocker = mock<FetchBitcoinStatistic>()
 
     val broking = BitcoinInfo(
         providedName = "Market Price (USD)",
@@ -41,7 +41,7 @@ class DashboardViewModelTests {
     }
 
     @Test fun `should emmit states for successful dashboard presentation`() {
-        whenever(mockedBrocker.marketPrice())
+        whenever(mockedBrocker.execute())
             .thenReturn(
                 Observable.just(broking)
             )
@@ -63,7 +63,7 @@ class DashboardViewModelTests {
     }
 
     @Test fun `should emmit states for errored broking integration`() {
-        whenever(mockedBrocker.marketPrice())
+        whenever(mockedBrocker.execute())
             .thenReturn(
                 Observable.error<BitcoinInfo>(NetworkingIssue.ConnectionSpike)
             )

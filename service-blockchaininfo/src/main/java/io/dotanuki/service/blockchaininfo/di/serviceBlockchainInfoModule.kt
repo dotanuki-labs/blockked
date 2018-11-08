@@ -1,11 +1,11 @@
 package io.dotanuki.service.blockchaininfo.di
 
-import io.dotanuki.blockked.domain.services.BlockchainInfoService
 import io.dotanuki.networking.BuildRetrofit
 import io.dotanuki.networking.di.networkingModule
 import io.dotanuki.service.blockchaininfo.BlockchainInfo
 import io.dotanuki.service.blockchaininfo.BrokerInfrastructure
 import io.dotanuki.service.blockchaininfo.ExecutionErrorHandler
+import io.dotanuki.services.common.BlockchainInfoService
 import io.reactivex.schedulers.Schedulers
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind

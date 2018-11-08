@@ -1,20 +1,19 @@
 package io.dotanuki.service.blockchaininfo
 
-import io.dotanuki.blockked.domain.services.BlockchainInfoService
-import io.dotanuki.services.common.BitcoinInfoMapper
+import io.dotanuki.services.common.BlockchainInfoService
 import io.dotanuki.services.common.MarketPriceResponse
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
 internal class BrokerInfrastructure(
     private val service: BlockchainInfo,
-    private val targetScheduler: Scheduler = Schedulers.trampoline(),
-    private val errorHandler: ExecutionErrorHandler<MarketPriceResponse>) : BlockchainInfoService {
+    private val errorHandler: ExecutionErrorHandler<MarketPriceResponse>,
+    private val targetScheduler: Scheduler = Schedulers.trampoline()) : BlockchainInfoService {
 
     override fun averageBitcoinPrice() =
-        service.marketPrice()
+        service
+            .marketPrice()
             .subscribeOn(targetScheduler)
             .compose(errorHandler)
-            .map { BitcoinInfoMapper(it) }
 
 }

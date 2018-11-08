@@ -1,7 +1,6 @@
 package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
-import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.dashboard.DashboardActivity
 import io.dotanuki.blockked.domain.BitcoinInfo
 import io.dotanuki.blockked.domain.BitcoinPrice

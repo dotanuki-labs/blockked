@@ -1,6 +1,5 @@
 package io.dotanuki.blockked.dashboard.di
 
-import io.dotanuki.blockked.dashboard.BitcoinBroker
 import io.dotanuki.blockked.dashboard.DashboardViewModel
 import io.dotanuki.common.StateMachine
 import io.dotanuki.common.di.sharedModule
@@ -14,12 +13,6 @@ val dashboardModule = Kodein.Module("dashboard") {
 
     import(sharedModule)
 
-    bind() from provider {
-        BitcoinBroker(
-            cache = instance(),
-            blockchainInfo = instance()
-        )
-    }
 
     bind() from provider {
 

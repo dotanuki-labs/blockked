@@ -1,12 +1,10 @@
 package io.dotanuki.common.di
 
-import io.dotanuki.service.blockchaininfo.di.blockchainInfoModule
-import io.dotanuki.services.cache.di.cacheModule
+import io.dotanuki.services.mesh.di.meshModule
 import org.kodein.di.Kodein
 
 val sharedModule = Kodein.Module("shared") {
 
-    importOnce(cacheModule)
-    importOnce(blockchainInfoModule)
+    importOnce(meshModule)
 
 }

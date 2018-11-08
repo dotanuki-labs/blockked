@@ -1,10 +1,13 @@
 apply plugin: 'com.android.library'
 apply from: "../android-module.gradle"
-apply plugin: 'kotlinx-serialization'
 
 dependencies {
 
     implementation project(':services-common')
+    implementation project(':service-cache')
+    implementation project(':service-blockchaininfo')
+    implementation project(':domain')
+
     implementation Dependencies.kotlinSerialization
 
     AndroidModule.main.forEach { implementation it }
@@ -12,3 +15,4 @@ dependencies {
     AndroidModule.androidTesting.forEach { androidTestImplementation it }
 
 }
+
