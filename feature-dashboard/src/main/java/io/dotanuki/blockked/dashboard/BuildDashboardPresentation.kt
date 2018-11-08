@@ -1,7 +1,7 @@
 package io.dotanuki.blockked.dashboard
 
 import io.dotanuki.blockked.domain.BitcoinStatistic
-import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.TimeBasedMeasure
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,7 +13,7 @@ object BuildDashboardPresentation {
 
             display = DisplayModel(
                 formattedValue = formatPrice(prices.last()),
-                title = "Current BTC price",
+                title = "Current BTC value",
                 subtitle = formatSubtitle(prices.last(), providedDescription)
             ),
 
@@ -35,30 +35,30 @@ object BuildDashboardPresentation {
         }
     }
 
-    private fun buildEntries(prices: List<BitcoinPrice>) =
+    private fun buildEntries(prices: List<TimeBasedMeasure>) =
         prices.mapIndexed { index, bitcoinPrice ->
             val x = (index + 1).toFloat()
-            PlottableEntry(x, bitcoinPrice.price)
+            PlottableEntry(x, bitcoinPrice.value)
         }
 
-    private fun formatLegend(first: BitcoinPrice, last: BitcoinPrice) =
-        "Bitcoin price evolution (${formateDate(first.date)} to ${formateDate(last.date)})"
+    private fun formatLegend(first: TimeBasedMeasure, last: TimeBasedMeasure) =
+        "Bitcoin value evolution (${formateDate(first.dateTime)} to ${formateDate(last.dateTime)})"
 
-    private fun extractMaximum(prices: List<BitcoinPrice>) =
-        prices.asSequence().map { it.price }.max()
+    private fun extractMaximum(prices: List<TimeBasedMeasure>) =
+        prices.asSequence().map { it.value }.max()
             ?.let { it + BIAS }
             ?: throw IllegalArgumentException("No maximum")
 
-    private fun extractMinimum(prices: List<BitcoinPrice>) =
-        prices.asSequence().map { it.price }.min()
+    private fun extractMinimum(prices: List<TimeBasedMeasure>) =
+        prices.asSequence().map { it.value }.min()
             ?.let { it - BIAS }
             ?: throw IllegalArgumentException("No minimum")
 
-    private fun formatSubtitle(last: BitcoinPrice, providedDescription: String) =
-        "Reference date : ${formateDate(last.date)}\n$providedDescription"
+    private fun formatSubtitle(last: TimeBasedMeasure, providedDescription: String) =
+        "Reference dateTime : ${formateDate(last.dateTime)}\n$providedDescription"
 
-    private fun formatPrice(last: BitcoinPrice) = with(last) {
-        priceFormatter.format(price).replace("$", "")
+    private fun formatPrice(last: TimeBasedMeasure) = with(last) {
+        priceFormatter.format(value).replace("$", "")
     }
 
     private fun formateDate(target: Date) = dateFormatter.format(target)

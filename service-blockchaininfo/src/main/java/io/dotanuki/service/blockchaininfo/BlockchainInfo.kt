@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 internal interface BlockchainInfo {
 
-    @GET("charts/market-price?timespan=4weeks&format=json") fun marketPrice(): Observable<BitcoinStatsResponse>
+    @GET("charts/market-value?timespan=4weeks&format=json") fun marketPrice(): Observable<BitcoinStatsResponse>
 
 
     companion object {

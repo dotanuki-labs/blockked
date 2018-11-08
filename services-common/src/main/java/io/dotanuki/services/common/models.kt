@@ -14,5 +14,5 @@ data class BitcoinStatsResponse(
 @Serializable
 data class StatisticPoint(
     @SerialName("x") val timestamp: Long,
-    @SerialName("y") val price: Float
+    @SerialName("y") val value: Float
 )

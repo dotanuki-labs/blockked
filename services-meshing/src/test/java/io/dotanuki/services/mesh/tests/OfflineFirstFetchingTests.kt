@@ -116,7 +116,7 @@ class OfflineFirstFetchingTests {
             values = listOf(
                 StatisticPoint(
                     timestamp = 1000L,
-                    price = 100f
+                    value = 100f
                 )
             )
         )

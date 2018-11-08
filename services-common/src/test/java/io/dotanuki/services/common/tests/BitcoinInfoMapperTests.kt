@@ -1,7 +1,7 @@
 package io.dotanuki.services.common.tests
 
-import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.blockked.domain.BitcoinStatistic
+import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.services.common.BitcoinInfoMapper
 import io.dotanuki.services.common.BitcoinStatsResponse
 import io.dotanuki.services.common.StatisticPoint
@@ -16,16 +16,16 @@ class BitcoinInfoMapperTests {
 
         val response = BitcoinStatsResponse(
             name = "Market Price (USD)",
-            description = "Average USD market price across major bitcoin exchanges.",
+            description = "Average USD market value across major bitcoin exchanges.",
             unit = "USD",
             values = listOf(
                 StatisticPoint(
                     timestamp = 1540166400,
-                    price = 6498.485833333333f
+                    value = 6498.485833333333f
                 ),
                 StatisticPoint(
                     timestamp = 1540252800,
-                    price = 6481.425999999999f
+                    value = 6481.425999999999f
                 )
             )
         )
@@ -33,17 +33,15 @@ class BitcoinInfoMapperTests {
 
         val expected = BitcoinStatistic(
             providedName = "Market Price (USD)",
-            providedDescription = "Average USD market price across major bitcoin exchanges.",
+            providedDescription = "Average USD market value across major bitcoin exchanges.",
             prices = listOf(
-                BitcoinPrice(
-                    date = "2018-10-21".toDate(),
-                    price = 6498.485833333333f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-21".toDate(),
+                    value = 6498.485833333333f
                 ),
-                BitcoinPrice(
-                    date = "2018-10-22".toDate(),
-                    price = 6481.425999999999f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-22".toDate(),
+                    value = 6481.425999999999f
                 )
             )
         )

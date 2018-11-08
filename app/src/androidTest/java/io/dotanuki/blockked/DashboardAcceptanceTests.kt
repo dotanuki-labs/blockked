@@ -3,7 +3,7 @@ package io.dotanuki.blockked
 import com.nhaarman.mockitokotlin2.mock
 import io.dotanuki.blockked.dashboard.DashboardActivity
 import io.dotanuki.blockked.domain.BitcoinStatistic
-import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.blockked.rules.BindingsOverwriter
@@ -29,21 +29,21 @@ class DashboardAcceptanceTests {
 
     val infoForGraphAndDisplay = BitcoinStatistic(
         providedName = "Market Price (USD)",
-        providedDescription = "Average USD market price across major bitcoin exchanges.",
+        providedDescription = "Average USD market value across major bitcoin exchanges.",
         prices = listOf(
-            BitcoinPrice(
-                date = "2018-10-21T22:00:00".toDate(),
-                price = 6498.48f,
+            TimeBasedMeasure(
+                dateTime = "2018-10-21T22:00:00".toDate(),
+                value = 6498.48f,
                 currencyUnit = "USD"
             ),
-            BitcoinPrice(
-                date = "2018-10-22T22:00:00".toDate(),
-                price = 6481.42f,
+            TimeBasedMeasure(
+                dateTime = "2018-10-22T22:00:00".toDate(),
+                value = 6481.42f,
                 currencyUnit = "USD"
             ),
-            BitcoinPrice(
-                date = "2018-10-23T22:00:00".toDate(),
-                price = 6511.32f,
+            TimeBasedMeasure(
+                dateTime = "2018-10-23T22:00:00".toDate(),
+                value = 6511.32f,
                 currencyUnit = "USD"
             )
         )
@@ -51,11 +51,11 @@ class DashboardAcceptanceTests {
 
     val justOneBitcoinValue = BitcoinStatistic(
         providedName = "Market Price (USD)",
-        providedDescription = "Average USD market price across major bitcoin exchanges.",
+        providedDescription = "Average USD market value across major bitcoin exchanges.",
         prices = listOf(
-            BitcoinPrice(
-                date = "2018-10-21T22:00:00".toDate(),
-                price = 6498.48f,
+            TimeBasedMeasure(
+                dateTime = "2018-10-21T22:00:00".toDate(),
+                value = 6498.48f,
                 currencyUnit = "USD"
             )
         )

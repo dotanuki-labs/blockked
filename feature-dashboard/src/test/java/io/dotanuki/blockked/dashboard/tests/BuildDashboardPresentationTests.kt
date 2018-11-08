@@ -2,7 +2,7 @@ package io.dotanuki.blockked.dashboard.tests
 
 import io.dotanuki.blockked.dashboard.*
 import io.dotanuki.blockked.domain.BitcoinStatistic
-import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.common.toDate
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Test
@@ -16,22 +16,19 @@ class BuildDashboardPresentationTests {
 
         val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
-            providedDescription = "Average USD market price across major bitcoin exchanges.",
+            providedDescription = "Average USD market value across major bitcoin exchanges.",
             prices = listOf(
-                BitcoinPrice(
-                    date = "2018-10-21T22:00:00".toDate(),
-                    price = 6498.485833333333f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-21T22:00:00".toDate(),
+                    value = 6498.485833333333f
                 ),
-                BitcoinPrice(
-                    date = "2018-10-22T22:00:00".toDate(),
-                    price = 6481.425999999999f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-22T22:00:00".toDate(),
+                    value = 6481.425999999999f
                 ),
-                BitcoinPrice(
-                    date = "2018-10-23T22:00:00".toDate(),
-                    price = 6511.321999999999f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-23T22:00:00".toDate(),
+                    value = 6511.321999999999f
                 )
             )
         )
@@ -40,14 +37,14 @@ class BuildDashboardPresentationTests {
 
             display = DisplayModel(
                 formattedValue = "6,511.32",
-                title = "Current BTC price",
-                subtitle = "Reference date : 2018-10-23\nAverage USD market price across major bitcoin exchanges."
+                title = "Current BTC value",
+                subtitle = "Reference dateTime : 2018-10-23\nAverage USD market value across major bitcoin exchanges."
             ),
 
             chart = ChartModel.AvaliableData(
                 minValue = 6481.425999999999f - 100f,
                 maxValue = 6511.321999999999f + 100f,
-                legend = "Bitcoin price evolution (2018-10-21 to 2018-10-23)",
+                legend = "Bitcoin value evolution (2018-10-21 to 2018-10-23)",
                 values = listOf(
                     PlottableEntry(1.0f, 6498.485833333333f),
                     PlottableEntry(2.0f, 6481.425999999999f),
@@ -63,12 +60,11 @@ class BuildDashboardPresentationTests {
 
         val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
-            providedDescription = "Average USD market price across major bitcoin exchanges.",
+            providedDescription = "Average USD market value across major bitcoin exchanges.",
             prices = listOf(
-                BitcoinPrice(
-                    date = "2018-10-21T22:00:00".toDate(),
-                    price = 6498.485833333333f,
-                    currencyUnit = "USD"
+                TimeBasedMeasure(
+                    dateTime = "2018-10-21T22:00:00".toDate(),
+                    value = 6498.485833333333f
                 )
             )
         )
@@ -77,8 +73,8 @@ class BuildDashboardPresentationTests {
 
             display = DisplayModel(
                 formattedValue = "6,498.49",
-                title = "Current BTC price",
-                subtitle = "Reference date : 2018-10-21\nAverage USD market price across major bitcoin exchanges."
+                title = "Current BTC value",
+                subtitle = "Reference dateTime : 2018-10-21\nAverage USD market value across major bitcoin exchanges."
             ),
 
             chart = ChartModel.Unavailable
