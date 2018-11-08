@@ -8,6 +8,8 @@ import io.dotanuki.burster.using
 import io.dotanuki.logger.ConsoleLogger
 import io.dotanuki.service.blockchaininfo.BrokerInfrastructure
 import io.dotanuki.service.blockchaininfo.ExecutionErrorHandler
+import io.dotanuki.services.common.BitcoinStatsResponse
+import io.dotanuki.services.common.StatisticPoint
 import labs.dotanuki.tite.checks.broken
 import labs.dotanuki.tite.checks.completed
 import labs.dotanuki.tite.checks.nothing
@@ -37,11 +39,31 @@ internal class BlockchainInfoInfrastructureTests {
             response = loadFile("200OK-market-price.json")
         )
 
+        val expected = BitcoinStatsResponse(
+            name = "Market Price (USD)",
+            description = "Average USD market price across major bitcoin exchanges.",
+            unit = "USD",
+            values = listOf(
+                StatisticPoint(
+                    timestamp = 1540166400,
+                    price = 6498.485833333333f
+                ),
+                StatisticPoint(
+                    timestamp = 1540252800,
+                    price = 6481.425999999999f
+                )
+            )
+        )
+
         given(infrastructure.averageBitcoinPrice()) {
 
             assertThatSequence {
                 should be completed
                 should emmit something
+            }
+
+            verifyForEmissions {
+                firstItem shouldBe expected
             }
         }
     }
