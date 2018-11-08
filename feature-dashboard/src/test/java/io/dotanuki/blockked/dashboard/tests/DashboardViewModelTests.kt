@@ -4,8 +4,8 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.dotanuki.blockked.dashboard.BuildDashboardPresentation
 import io.dotanuki.blockked.dashboard.DashboardViewModel
-import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*
@@ -54,7 +54,7 @@ class DashboardViewModelTests {
 
             verifyForEmissions {
                 items match sequenceOf(
-                    InFlight,
+                    Launched,
                     Result(BuildDashboardPresentation(broking)),
                     Done
                 )
@@ -76,7 +76,7 @@ class DashboardViewModelTests {
 
             verifyForEmissions {
                 items match sequenceOf(
-                    InFlight,
+                    Launched,
                     Failed(NetworkingIssue.ConnectionSpike),
                     Done
                 )

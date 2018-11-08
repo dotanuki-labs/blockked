@@ -49,7 +49,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
 
     private fun changeState(event: UIEvent<DashboardPresentation>) {
         when (event) {
-            is InFlight -> startExecution()
+            is Launched -> startExecution()
             is Result -> presentDashboard(event.value)
             is Failed -> reportError(event.reason)
             is Done -> finishExecution()
