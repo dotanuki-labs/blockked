@@ -19,7 +19,7 @@ class OfflineFirstFetching(
                     ?: update
             }
 
-    fun remoteThenCache(
+    private fun remoteThenCache(
         target: CacheEntry,
         fetch: (BlockchainInfoService) -> Observable<BitcoinStatsResponse>) =
             fetch
