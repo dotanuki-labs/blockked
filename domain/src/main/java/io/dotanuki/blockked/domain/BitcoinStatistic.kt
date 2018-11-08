@@ -1,6 +1,6 @@
 package io.dotanuki.blockked.domain
 
-data class BitcoinInfo(
+data class BitcoinStatistic(
 
     val providedName: String,
     val providedDescription: String,

@@ -1,7 +1,7 @@
 package io.dotanuki.blockked.dashboard.tests
 
 import io.dotanuki.blockked.dashboard.*
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.common.toDate
 import org.assertj.core.api.Java6Assertions.assertThat
@@ -14,7 +14,7 @@ class BuildDashboardPresentationTests {
 
     @Test fun `should build available chart data from bitcoin info`() {
 
-        val provided = BitcoinInfo(
+        val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market price across major bitcoin exchanges.",
             prices = listOf(
@@ -61,7 +61,7 @@ class BuildDashboardPresentationTests {
 
     @Test fun `should build display only, when chart info missing`() {
 
-        val provided = BitcoinInfo(
+        val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market price across major bitcoin exchanges.",
             prices = listOf(

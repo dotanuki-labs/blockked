@@ -4,15 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MarketPriceResponse(
+data class BitcoinStatsResponse(
     val name: String,
     val description: String,
     val unit: String,
-    val values: List<BTCPriceResponse>
+    val values: List<StatisticPoint>
 )
 
 @Serializable
-data class BTCPriceResponse(
+data class StatisticPoint(
     @SerialName("x") val timestamp: Long,
     @SerialName("y") val price: Float
 )

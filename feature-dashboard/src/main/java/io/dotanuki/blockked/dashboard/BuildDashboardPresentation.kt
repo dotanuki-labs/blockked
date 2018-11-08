@@ -1,6 +1,6 @@
 package io.dotanuki.blockked.dashboard
 
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -8,7 +8,7 @@ import java.util.*
 
 object BuildDashboardPresentation {
 
-    operator fun invoke(info: BitcoinInfo) = with(info) {
+    operator fun invoke(info: BitcoinStatistic) = with(info) {
         DashboardPresentation(
 
             display = DisplayModel(
@@ -22,7 +22,7 @@ object BuildDashboardPresentation {
         )
     }
 
-    private fun assembleChart(info: BitcoinInfo) = with(info) {
+    private fun assembleChart(info: BitcoinStatistic) = with(info) {
         if (prices.size < 2) ChartModel.Unavailable
         else {
             ChartModel.AvaliableData(

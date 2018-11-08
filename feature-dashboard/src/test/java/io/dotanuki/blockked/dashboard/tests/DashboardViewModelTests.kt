@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.dotanuki.blockked.dashboard.BuildDashboardPresentation
 import io.dotanuki.blockked.dashboard.DashboardViewModel
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.blockked.domain.NetworkingIssue
@@ -21,7 +21,7 @@ class DashboardViewModelTests {
 
     val mockedBrocker = mock<FetchBitcoinStatistic>()
 
-    val broking = BitcoinInfo(
+    val broking = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market price across major bitcoin exchanges.",
         prices = listOf(
@@ -65,7 +65,7 @@ class DashboardViewModelTests {
     @Test fun `should emmit states for errored broking integration`() {
         whenever(mockedBrocker.execute())
             .thenReturn(
-                Observable.error<BitcoinInfo>(NetworkingIssue.ConnectionSpike)
+                Observable.error<BitcoinStatistic>(NetworkingIssue.ConnectionSpike)
             )
 
         given(viewModel.retrieveDashboard()) {

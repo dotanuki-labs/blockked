@@ -1,10 +1,10 @@
 package io.dotanuki.services.common.tests
 
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.services.common.BTCPriceResponse
 import io.dotanuki.services.common.BitcoinInfoMapper
-import io.dotanuki.services.common.MarketPriceResponse
+import io.dotanuki.services.common.BitcoinStatsResponse
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Test
 import java.text.SimpleDateFormat
@@ -15,7 +15,7 @@ class BitcoinInfoMapperTests {
     @Test
     fun `should map to Bitcoininfo from parsed MarketPrice model`() {
 
-        val response = MarketPriceResponse(
+        val response = BitcoinStatsResponse(
             name = "Market Price (USD)",
             description = "Average USD market price across major bitcoin exchanges.",
             unit = "USD",
@@ -32,7 +32,7 @@ class BitcoinInfoMapperTests {
         )
 
 
-        val expected = BitcoinInfo(
+        val expected = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market price across major bitcoin exchanges.",
             prices = listOf(

@@ -4,6 +4,6 @@ import io.reactivex.Observable
 
 interface BlockchainInfoService {
 
-    fun averageBitcoinPrice() : Observable<MarketPriceResponse>
+    fun averageBitcoinPrice() : Observable<BitcoinStatsResponse>
 
 }

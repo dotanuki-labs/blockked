@@ -4,6 +4,6 @@ import io.reactivex.Observable
 
 interface FetchBitcoinStatistic {
 
-    fun execute(): Observable<BitcoinInfo>
+    fun execute(): Observable<BitcoinStatistic>
 
 }

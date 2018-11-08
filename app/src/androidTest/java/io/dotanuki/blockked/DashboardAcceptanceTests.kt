@@ -2,7 +2,7 @@ package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
 import io.dotanuki.blockked.dashboard.DashboardActivity
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.BitcoinPrice
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
@@ -27,7 +27,7 @@ class DashboardAcceptanceTests {
         }
     }
 
-    val infoForGraphAndDisplay = BitcoinInfo(
+    val infoForGraphAndDisplay = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market price across major bitcoin exchanges.",
         prices = listOf(
@@ -49,7 +49,7 @@ class DashboardAcceptanceTests {
         )
     )
 
-    val justOneBitcoinValue = BitcoinInfo(
+    val justOneBitcoinValue = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market price across major bitcoin exchanges.",
         prices = listOf(

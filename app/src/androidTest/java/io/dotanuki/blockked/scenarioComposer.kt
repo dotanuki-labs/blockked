@@ -1,7 +1,7 @@
 package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.whenever
-import io.dotanuki.blockked.domain.BitcoinInfo
+import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.reactivex.Observable
 
 fun given(broker: BitcoinBroker, block: ScenarioHook.() -> Unit) =
@@ -28,7 +28,7 @@ class Scenario(private val composer: ScenarioComposer) {
 
 sealed class HandledCondition
 class IssueFound(val error: Throwable) : HandledCondition()
-class DataFechted(val info: BitcoinInfo) : HandledCondition()
+class DataFechted(val info: BitcoinStatistic) : HandledCondition()
 
 class ScenarioComposer(private val broker: BitcoinBroker) {
 
