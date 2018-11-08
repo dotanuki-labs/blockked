@@ -32,6 +32,11 @@ class OfflineFirstFetchingTests {
             assertThatSequence {
                 should be completed
             }
+
+            verifyForEmissions {
+                firstItem shouldBe UPDATED_RESPONSE
+                count shouldBe 1
+            }
         }
 
         `check remote service interactions`()
