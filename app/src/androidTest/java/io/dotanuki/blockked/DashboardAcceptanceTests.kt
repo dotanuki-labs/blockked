@@ -1,7 +1,7 @@
 package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
-import io.dotanuki.blockked.dashboard.DashboardActivity
+import io.dotanuki.blockked.dashboards.DashboardActivity
 import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue

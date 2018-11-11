@@ -61,7 +61,7 @@ android {
 dependencies {
 
     implementation project(':logger')
-    implementation project(':feature-dashboard')
+    implementation project(':feature-dashboards')
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }

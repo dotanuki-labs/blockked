@@ -1,6 +1,6 @@
-package io.dotanuki.blockked.dashboard.tests
+package io.dotanuki.blockked.dashboards.tests
 
-import io.dotanuki.blockked.dashboard.*
+import io.dotanuki.blockked.dashboards.*
 import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.common.toDate

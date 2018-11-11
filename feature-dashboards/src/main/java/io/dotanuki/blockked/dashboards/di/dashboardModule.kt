@@ -1,6 +1,6 @@
-package io.dotanuki.blockked.dashboard.di
+package io.dotanuki.blockked.dashboards.di
 
-import io.dotanuki.blockked.dashboard.DashboardViewModel
+import io.dotanuki.blockked.dashboards.DashboardViewModel
 import io.dotanuki.common.StateMachine
 import io.dotanuki.common.di.sharedModule
 import io.reactivex.android.schedulers.AndroidSchedulers

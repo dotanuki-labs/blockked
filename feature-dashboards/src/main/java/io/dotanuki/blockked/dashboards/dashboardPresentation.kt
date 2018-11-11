@@ -1,4 +1,4 @@
-package io.dotanuki.blockked.dashboard
+package io.dotanuki.blockked.dashboards
 
 import com.github.mikephil.charting.data.Entry
 

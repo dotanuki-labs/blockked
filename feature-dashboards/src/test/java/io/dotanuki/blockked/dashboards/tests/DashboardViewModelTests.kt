@@ -1,9 +1,9 @@
-package io.dotanuki.blockked.dashboard.tests
+package io.dotanuki.blockked.dashboards.tests
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import io.dotanuki.blockked.dashboard.BuildDashboardPresentation
-import io.dotanuki.blockked.dashboard.DashboardViewModel
+import io.dotanuki.blockked.dashboards.BuildDashboardPresentation
+import io.dotanuki.blockked.dashboards.DashboardViewModel
 import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.blockked.domain.NetworkingIssue

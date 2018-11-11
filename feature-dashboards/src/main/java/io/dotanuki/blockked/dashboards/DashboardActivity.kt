@@ -1,4 +1,4 @@
-package io.dotanuki.blockked.dashboard
+package io.dotanuki.blockked.dashboards
 
 import android.os.Bundle
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import io.dotanuki.blockked.dashboard.ChartModel.AvaliableData
-import io.dotanuki.blockked.dashboard.ChartModel.Unavailable
+import io.dotanuki.blockked.dashboards.ChartModel.AvaliableData
+import io.dotanuki.blockked.dashboards.ChartModel.Unavailable
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*

@@ -1,4 +1,4 @@
-package io.dotanuki.blockked.dashboard
+package io.dotanuki.blockked.dashboards
 
 import io.dotanuki.blockked.domain.BitcoinStatistic
 import io.dotanuki.blockked.domain.TimeBasedMeasure
