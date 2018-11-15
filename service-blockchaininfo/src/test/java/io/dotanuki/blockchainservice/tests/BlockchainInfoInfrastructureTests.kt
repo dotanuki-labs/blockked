@@ -4,6 +4,7 @@ import io.dotanuki.blockchainservice.tests.util.InfrastructureRule
 import io.dotanuki.blockchainservice.tests.util.loadFile
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue.*
+import io.dotanuki.blockked.domain.SupportedStatistic
 import io.dotanuki.burster.using
 import io.dotanuki.logger.ConsoleLogger
 import io.dotanuki.service.blockchaininfo.BrokerInfrastructure
@@ -55,17 +56,16 @@ internal class BlockchainInfoInfrastructureTests {
             )
         )
 
-        given(infrastructure.averageBitcoinPrice()) {
+        given(infrastructure.fetchStatistics(SupportedStatistic.AverageMarketPrice)) {
 
             assertThatSequence {
                 should be completed
                 should emmit something
             }
 
-            // TODO : learn why the hell this does not work
-//            verifyForEmissions {
-//                firstItem shouldBe expected
-//            }
+            verifyForEmissions {
+                firstItem shouldBe expected
+            }
         }
     }
 
@@ -87,7 +87,7 @@ internal class BlockchainInfoInfrastructureTests {
                     response = loadFile(json)
                 )
 
-                given(infrastructure.averageBitcoinPrice()) {
+                given(infrastructure.fetchStatistics(SupportedStatistic.AverageMarketPrice)) {
 
                     assertThatSequence {
                         should be broken

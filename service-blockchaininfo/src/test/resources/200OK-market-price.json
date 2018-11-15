@@ -1,5 +1,5 @@
 {
-  "description": "Average USD market price across major bitcoin exchanges.",
+  "description": "Average USD market value across major bitcoin exchanges.",
   "name": "Market Price (USD)",
   "period": "day",
   "status": "ok",
