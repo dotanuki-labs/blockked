@@ -1,7 +1,7 @@
 package io.dotanuki.networking.tests
 
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue.*
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue.*
 import io.dotanuki.burster.using
 import io.dotanuki.networking.HandleErrorByHttpStatus
 import io.reactivex.Observable
@@ -21,7 +21,7 @@ class HandleErrorByHttpStatusTests {
 
     @Test fun `should handle error when mapped from proper HTTP status code`() {
 
-        using<Int, String, BlockchainInfoIntegrationIssue> {
+        using<Int, String, RemoteIntegrationIssue> {
 
             burst {
                 values(418, "Teapot", ClientOrigin)

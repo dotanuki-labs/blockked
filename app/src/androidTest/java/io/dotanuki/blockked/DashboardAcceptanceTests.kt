@@ -112,7 +112,7 @@ class DashboardAcceptanceTests {
     }
 
     @Test fun atDashboardLaunch_givenIntegrationError_thenErrorReported() {
-        val integrationError = BlockchainInfoIntegrationIssue.RemoteSystem
+        val integrationError = RemoteIntegrationIssue.RemoteSystem
         checkErrorState(integrationError)
     }
 

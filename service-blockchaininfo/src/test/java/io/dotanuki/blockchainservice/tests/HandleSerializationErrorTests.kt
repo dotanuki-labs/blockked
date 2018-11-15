@@ -1,6 +1,6 @@
 package io.dotanuki.blockchainservice.tests
 
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.dotanuki.logger.ConsoleLogger
 import io.dotanuki.service.blockchaininfo.util.HandleSerializationError
 import io.reactivex.Observable
@@ -16,7 +16,7 @@ class HandleSerializationErrorTests {
     @Test fun `should handle serialization errors`() {
         val parseError = SerializationException("Found comments inside this JSON")
         val execution = Observable.error<Any>(parseError)
-        assertHandling(execution, BlockchainInfoIntegrationIssue.UnexpectedResponse)
+        assertHandling(execution, RemoteIntegrationIssue.UnexpectedResponse)
     }
 
 

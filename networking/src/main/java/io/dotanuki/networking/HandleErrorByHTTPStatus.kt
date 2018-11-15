@@ -1,6 +1,6 @@
 package io.dotanuki.networking
 
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
@@ -22,8 +22,8 @@ class HandleErrorByHttpStatus<T> : ObservableTransformer<T, T> {
     }
 
     private fun mapErrorWith(code: Int) = when (code) {
-        in 400..499 -> BlockchainInfoIntegrationIssue.ClientOrigin
-        else -> BlockchainInfoIntegrationIssue.RemoteSystem
+        in 400..499 -> RemoteIntegrationIssue.ClientOrigin
+        else -> RemoteIntegrationIssue.RemoteSystem
     }
 
 }

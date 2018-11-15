@@ -2,8 +2,8 @@ package io.dotanuki.blockchainservice.tests
 
 import io.dotanuki.blockchainservice.tests.util.InfrastructureRule
 import io.dotanuki.blockchainservice.tests.util.loadFile
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue.*
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue.*
 import io.dotanuki.blockked.domain.SupportedStatistic
 import io.dotanuki.burster.using
 import io.dotanuki.logger.ConsoleLogger
@@ -72,7 +72,7 @@ internal class BlockchainInfoInfrastructureTests {
     @Test fun `should map issue for non-desired responses`() {
 
 
-        using<String, Int, BlockchainInfoIntegrationIssue> {
+        using<String, Int, RemoteIntegrationIssue> {
 
             burst {
                 values("200OK-market-price-broken.json", 200, UnexpectedResponse)

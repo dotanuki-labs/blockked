@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*
 import io.dotanuki.logger.Logger
@@ -78,7 +78,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
 
         when (reason) {
             is NetworkingIssue,
-            is BlockchainInfoIntegrationIssue -> errorStateLabel.apply {
+            is RemoteIntegrationIssue -> errorStateLabel.apply {
                 Toast.makeText(this@DashboardActivity, "$reason", Toast.LENGTH_LONG).show()
             }
         }

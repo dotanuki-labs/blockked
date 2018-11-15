@@ -1,6 +1,6 @@
 package io.dotanuki.service.blockchaininfo.util
 
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.dotanuki.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
@@ -20,7 +20,7 @@ internal class HandleSerializationError<T>(private val logger: Logger) : Observa
         val mapped = when (error) {
             is MissingFieldException,
             is UnknownFieldException,
-            is SerializationException -> BlockchainInfoIntegrationIssue.UnexpectedResponse
+            is SerializationException -> RemoteIntegrationIssue.UnexpectedResponse
             else -> error
         }
 
