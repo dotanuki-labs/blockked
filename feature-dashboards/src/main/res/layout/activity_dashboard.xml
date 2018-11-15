@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:fitsSystemWindows="true"
         android:background="@color/screenBG"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar"
+                android:minHeight="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:title="@string/app_name"
+                app:titleTextColor="@android:color/white"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:id="@+id/dashboarView"
-    />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ProgressBar
-            android:visibility="invisible"
-            android:id="@+id/loadingIndication"
-            android:layout_gravity="center"
-            android:layout_width="48dp"
-            android:layout_height="48dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dashboarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <TextView
             android:visibility="invisible"
@@ -34,4 +58,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

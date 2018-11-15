@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -36,12 +37,22 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        setupViews()
+        loadDashboard()
+    }
+
+    private fun setupViews() {
         dashboarView.apply {
             layoutManager = LinearLayoutManager(this@DashboardActivity)
             adapter = dashboardsAdapter
         }
 
-        loadDashboard()
+        swipeToRefresh.apply {
+            setColorSchemeColors(ContextCompat.getColor(this@DashboardActivity, R.color.colorPrimary))
+            setOnRefreshListener { loadDashboard() }
+        }
+
+        setSupportActionBar(toolbar)
     }
 
     private fun loadDashboard() {
@@ -61,7 +72,6 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
             is Done -> finishExecution()
         }
     }
-
 
     private fun reportError(reason: Throwable) {
         logger.e("Error -> $reason")
@@ -87,11 +97,11 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
 
     private fun startExecution() {
         dashboarView.visibility = View.INVISIBLE
-        loadingIndication.visibility = View.VISIBLE
+        swipeToRefresh.isRefreshing = true
     }
 
     private fun finishExecution() {
-        loadingIndication.visibility = View.INVISIBLE
+        swipeToRefresh.isRefreshing = false
     }
 
 }

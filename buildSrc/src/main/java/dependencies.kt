@@ -52,6 +52,7 @@ object Dependencies {
     val appCompat = "androidx.appcompat:appcompat:${Versions.supportLibrary}"
     val cardView = "androidx.cardview:cardview:${Versions.supportLibrary}"
     val recyclerView = "androidx.recyclerview:recyclerview:${Versions.supportLibrary}"
+    val materialDesign = "com.google.android.material:material:${Versions.supportLibrary}"
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupieKTX = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
@@ -102,6 +103,7 @@ object AndroidModule {
         Dependencies.appCompat,
         Dependencies.cardView,
         Dependencies.recyclerView,
+        Dependencies.materialDesign,
         Dependencies.kodein,
         Dependencies.kodeinAndroid,
         Dependencies.kodeinConf
@@ -115,7 +117,6 @@ object AndroidModule {
         TestDependencies.kotlinReflect,
         TestDependencies.mockitoKotlin,
         TestDependencies.tite
-
     )
 
     val androidTesting = listOf(
