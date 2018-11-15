@@ -8,28 +8,27 @@ import java.util.*
 
 object BuildDashboardPresentation {
 
-    operator fun invoke(info: BitcoinStatistic) = with(info) {
+    operator fun invoke(info: List<BitcoinStatistic>) = info.map {
         DashboardPresentation(
 
             display = DisplayModel(
-                formattedValue = formatPrice(prices.last()),
-                title = "Current BTC value",
-                subtitle = formatSubtitle(prices.last(), providedDescription)
+                title = it.providedName,
+                subtitle = it.providedDescription,
+                formattedValue = formatPrice(it.measures.last())
             ),
 
-            chart = assembleChart(info)
-
+            chart = assembleChart(it)
         )
     }
 
     private fun assembleChart(info: BitcoinStatistic) = with(info) {
-        if (prices.size < 2) ChartModel.Unavailable
+        if (measures.size < 2) ChartModel.Unavailable
         else {
             ChartModel.AvaliableData(
-                minValue = extractMinimum(prices),
-                maxValue = extractMaximum(prices),
-                legend = formatLegend(prices.first(), prices.last()),
-                values = buildEntries(prices)
+                minValue = extractMinimum(measures),
+                maxValue = extractMaximum(measures),
+                legend = formatLegend(measures.first(), measures.last()),
+                values = buildEntries(measures)
 
             )
         }
@@ -42,20 +41,17 @@ object BuildDashboardPresentation {
         }
 
     private fun formatLegend(first: TimeBasedMeasure, last: TimeBasedMeasure) =
-        "Bitcoin value evolution (${formateDate(first.dateTime)} to ${formateDate(last.dateTime)})"
+        "Data sampled, from ${formateDate(first.dateTime)} to ${formateDate(last.dateTime)}"
 
     private fun extractMaximum(prices: List<TimeBasedMeasure>) =
         prices.asSequence().map { it.value }.max()
-            ?.let { it + BIAS }
+            ?.let { if (it == 0.0f) 10.0f else it + it * 0.05f }
             ?: throw IllegalArgumentException("No maximum")
 
     private fun extractMinimum(prices: List<TimeBasedMeasure>) =
         prices.asSequence().map { it.value }.min()
-            ?.let { it - BIAS }
+            ?.let { if (it == 0.0f) -10.0f else it - it * 0.05f }
             ?: throw IllegalArgumentException("No minimum")
-
-    private fun formatSubtitle(last: TimeBasedMeasure, providedDescription: String) =
-        "Reference dateTime : ${formateDate(last.dateTime)}\n$providedDescription"
 
     private fun formatPrice(last: TimeBasedMeasure) = with(last) {
         priceFormatter.format(value).replace("$", "")
@@ -67,5 +63,4 @@ object BuildDashboardPresentation {
 
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
 
-    private const val BIAS = 100f
 }

@@ -5,8 +5,8 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.dotanuki.blockked.dashboards.BuildDashboardPresentation
 import io.dotanuki.blockked.dashboards.DashboardViewModel
 import io.dotanuki.blockked.domain.BitcoinStatistic
-import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.dotanuki.blockked.domain.NetworkingIssue
+import io.dotanuki.blockked.domain.RetrieveStatistics
 import io.dotanuki.blockked.domain.TimeBasedMeasure
 import io.dotanuki.common.*
 import io.reactivex.Observable
@@ -19,12 +19,12 @@ class DashboardViewModelTests {
 
     lateinit var viewModel: DashboardViewModel
 
-    val mockedBrocker = mock<FetchBitcoinStatistic>()
+    val mockedBrocker = mock<RetrieveStatistics>()
 
     val broking = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
-        prices = listOf(
+        measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
                 value = 6498.485833333333f
@@ -34,7 +34,7 @@ class DashboardViewModelTests {
 
     @Before fun `before each test`() {
         viewModel = DashboardViewModel(
-            broker = mockedBrocker,
+            usecase = mockedBrocker,
             machine = StateMachine()
         )
     }
@@ -42,7 +42,7 @@ class DashboardViewModelTests {
     @Test fun `should emmit states for successful dashboard presentation`() {
         whenever(mockedBrocker.execute())
             .thenReturn(
-                Observable.just(broking)
+                Observable.just(listOf(broking))
             )
 
         given(viewModel.retrieveDashboard()) {
@@ -54,7 +54,7 @@ class DashboardViewModelTests {
             verifyForEmissions {
                 items match sequenceOf(
                     Launched,
-                    Result(BuildDashboardPresentation(broking)),
+                    Result(BuildDashboardPresentation(listOf(broking))),
                     Done
                 )
             }
@@ -64,7 +64,7 @@ class DashboardViewModelTests {
     @Test fun `should emmit states for errored broking integration`() {
         whenever(mockedBrocker.execute())
             .thenReturn(
-                Observable.error<BitcoinStatistic>(NetworkingIssue.ConnectionSpike)
+                Observable.error<List<BitcoinStatistic>>(NetworkingIssue.ConnectionSpike)
             )
 
         given(viewModel.retrieveDashboard()) {
