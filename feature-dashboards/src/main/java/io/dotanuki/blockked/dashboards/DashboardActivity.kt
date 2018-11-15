@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import io.dotanuki.blockked.dashboards.ChartModel.AvaliableData
-import io.dotanuki.blockked.dashboards.ChartModel.Unavailable
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
 import io.dotanuki.common.*
 import io.dotanuki.logger.Logger
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.view_dashboard.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -32,9 +29,18 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
     private val logger by kodein.instance<Logger>()
     private val viewModel by kodein.instance<DashboardViewModel>()
 
+    private val dashboardsAdapter by lazy {
+        GroupAdapter<ViewHolder>()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        dashboarView.apply {
+            layoutManager = LinearLayoutManager(this@DashboardActivity)
+            adapter = dashboardsAdapter
+        }
+
         loadDashboard()
     }
 
@@ -47,7 +53,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
             )
     }
 
-    private fun changeState(event: UIEvent<DashboardPresentation>) {
+    private fun changeState(event: UIEvent<List<DashboardPresentation>>) {
         when (event) {
             is Launched -> startExecution()
             is Result -> presentDashboard(event.value)
@@ -68,53 +74,15 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
         }
     }
 
-    private fun presentDashboard(presentation: DashboardPresentation) {
+    private fun presentDashboard(dashboards: List<DashboardPresentation>) {
+        logger.i("Loaded Dashboards")
+        val entries = dashboards.map { DashboardEntry(it) }
+
         dashboarView.visibility = View.VISIBLE
-        val (display, chart) = presentation
-        presentDisplay(display)
-        presentChart(chart)
-
-    }
-
-    private fun presentChart(chart: ChartModel) {
-        when (chart) {
-            is Unavailable -> chartContainer.visibility = View.GONE
-            is AvaliableData -> {
-
-                val dataSets = listOf(
-                    LineDataSet(chart.values.map { it as Entry }, chart.legend).apply {
-                        setDrawValues(false)
-                    }
-                )
-
-                bitcoinPriceChart.apply {
-                    setPinchZoom(false)
-                    setTouchEnabled(false)
-                    description.isEnabled = false
-                    axisRight.isEnabled = false
-                    xAxis.isEnabled = false
-
-                    setDrawBorders(false)
-                    setDrawGridBackground(false)
-
-                    axisLeft.apply {
-                        axisMaximum = chart.maxValue
-                        axisMinimum = chart.minValue
-                        setDrawZeroLine(false)
-                    }
-
-                    data = LineData(dataSets)
-                    animateX(1500)
-                }
-            }
-
+        dashboardsAdapter.apply {
+            clear()
+            addAll(entries)
         }
-    }
-
-    private fun presentDisplay(display: DisplayModel) {
-        displayTitle.text = display.title
-        displayValue.text = display.formattedValue
-        displaySubtitle.text = display.subtitle
     }
 
     private fun startExecution() {
