@@ -5,6 +5,7 @@ apply plugin: 'kotlinx-serialization'
 dependencies {
 
     implementation project(':services-common')
+    implementation project(':domain')
     implementation Dependencies.kotlinSerialization
 
     AndroidModule.main.forEach { implementation it }

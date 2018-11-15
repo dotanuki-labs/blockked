@@ -2,8 +2,8 @@ package io.dotanuki.services.cache
 
 import android.annotation.SuppressLint
 import android.content.Context
+import io.dotanuki.blockked.domain.SupportedStatistic
 import io.dotanuki.services.common.BitcoinStatsResponse
-import io.dotanuki.services.common.CacheEntry
 import io.dotanuki.services.common.CacheService
 import kotlinx.serialization.json.JSON
 
@@ -14,13 +14,13 @@ class PersistantCache(context: Context) : CacheService {
         context.getSharedPreferences("blockchaininfo.cache", Context.MODE_PRIVATE)
     }
 
-    override fun save(key: CacheEntry, value: BitcoinStatsResponse) {
+    override fun save(key: SupportedStatistic, value: BitcoinStatsResponse) {
         prefs.edit()
             .putString(key.toString(), JSON.stringify(value))
             .commit()
     }
 
-    override fun retrieveOrNull(key: CacheEntry): BitcoinStatsResponse? {
+    override fun retrieveOrNull(key: SupportedStatistic): BitcoinStatsResponse? {
         val target = prefs.getString(key.toString(), null)
 
         return try {
@@ -30,7 +30,7 @@ class PersistantCache(context: Context) : CacheService {
         }
     }
 
-    override fun remove(key: CacheEntry) {
+    override fun remove(key: SupportedStatistic) {
         prefs.edit()
             .remove(key.toString())
             .commit()
