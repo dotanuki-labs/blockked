@@ -2,10 +2,7 @@ package io.dotanuki.blockked
 
 import com.nhaarman.mockitokotlin2.mock
 import io.dotanuki.blockked.dashboards.DashboardActivity
-import io.dotanuki.blockked.domain.BitcoinStatistic
-import io.dotanuki.blockked.domain.TimeBasedMeasure
-import io.dotanuki.blockked.domain.BlockchainInfoIntegrationIssue
-import io.dotanuki.blockked.domain.NetworkingIssue
+import io.dotanuki.blockked.domain.*
 import io.dotanuki.blockked.rules.BindingsOverwriter
 import io.dotanuki.blockked.rules.ScreenLauncher
 import io.dotanuki.common.toDate
@@ -16,13 +13,13 @@ import org.kodein.di.generic.provider
 
 class DashboardAcceptanceTests {
 
-    private val broker = mock<BitcoinBroker>()
+    private val broker = mock<FetchBitcoinStatistic>()
 
     @get:Rule val launcher = ScreenLauncher(DashboardActivity::class)
 
     @get:Rule val overwriter = BindingsOverwriter {
 
-        bind<BitcoinBroker>(overrides = true) with provider {
+        bind<FetchBitcoinStatistic>(overrides = true) with provider {
             broker
         }
     }
@@ -30,21 +27,18 @@ class DashboardAcceptanceTests {
     val infoForGraphAndDisplay = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
-        prices = listOf(
+        measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
-                value = 6498.48f,
-                currencyUnit = "USD"
+                value = 6498.48f
             ),
             TimeBasedMeasure(
                 dateTime = "2018-10-22T22:00:00".toDate(),
-                value = 6481.42f,
-                currencyUnit = "USD"
+                value = 6481.42f
             ),
             TimeBasedMeasure(
                 dateTime = "2018-10-23T22:00:00".toDate(),
-                value = 6511.32f,
-                currencyUnit = "USD"
+                value = 6511.32f
             )
         )
     )
@@ -52,11 +46,10 @@ class DashboardAcceptanceTests {
     val justOneBitcoinValue = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
-        prices = listOf(
+        measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
-                value = 6498.48f,
-                currencyUnit = "USD"
+                value = 6498.48f
             )
         )
     )
