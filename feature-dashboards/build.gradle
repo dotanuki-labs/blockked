@@ -11,6 +11,9 @@ dependencies {
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }
 
+    implementation Dependencies.groupie
+    implementation Dependencies.groupieKTX
     implementation Dependencies.mpAndroidChart
+
     testImplementation TestDependencies.roboletric
 }

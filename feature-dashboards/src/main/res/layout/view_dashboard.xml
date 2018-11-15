@@ -1,62 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:padding="16dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/displayContainer"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-            android:id="@+id/displayContainer"
+    <LinearLayout
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <LinearLayout
-                android:layout_margin="8dp"
+        <TextView
+                android:id="@+id/displayTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                tools:text="Current Bitcoin Price"
+                android:maxLines="2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
 
-            <TextView
-                    android:id="@+id/displayTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Current Bitcoin Price"
-                    android:maxLines="2"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            />
+        <TextView
+                android:id="@+id/displaySubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Some description here"
+                android:textStyle="italic"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
-            <TextView
-                    android:id="@+id/displayValue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="USD 2500.00"
-                    android:maxLines="1"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            />
-
-            <TextView
-                    android:id="@+id/displaySubtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Reference date : October-23 (2018)"
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-            android:id="@+id/chartContainer"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/displayValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="USD 2500.00"
+                android:maxLines="1"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:autoSizeTextType="uniform"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
 
         <com.github.mikephil.charting.charts.LineChart
                 android:layout_margin="8dp"
@@ -64,6 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"/>
 
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

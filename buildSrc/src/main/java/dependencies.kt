@@ -17,7 +17,7 @@ internal object Versions {
     const val retrofitKotlinxConverter = "0.0.1"
     const val supportLibrary = "1.0.0"
     const val mpAndroidChart = "v3.0.3"
-    const val hawk = "2.0.1"
+    const val groupie = "2.3.0"
     const val jUnit4 = "4.12"
     const val burster = "0.1.0"
     const val assertJ = "2.9.1"
@@ -51,9 +51,10 @@ object Dependencies {
 
     val appCompat = "androidx.appcompat:appcompat:${Versions.supportLibrary}"
     val cardView = "androidx.cardview:cardview:${Versions.supportLibrary}"
+    val recyclerView = "androidx.recyclerview:recyclerview:${Versions.supportLibrary}"
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
-    val hawk = "com.orhanobut:hawk:${Versions.hawk}"
-
+    val groupie = "com.xwray:groupie:${Versions.groupie}"
+    val groupieKTX = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
     val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
     val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodeinDI}"
@@ -100,6 +101,7 @@ object AndroidModule {
         Dependencies.rxAndroid,
         Dependencies.appCompat,
         Dependencies.cardView,
+        Dependencies.recyclerView,
         Dependencies.kodein,
         Dependencies.kodeinAndroid,
         Dependencies.kodeinConf
