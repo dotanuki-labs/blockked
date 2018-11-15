@@ -10,7 +10,7 @@ object BitcoinInfoMapper {
         BitcoinStatistic(
             providedName = name,
             providedDescription = description,
-            prices = values.map {
+            measures = values.map {
                 TimeBasedMeasure(
                     dateTime = assembleFixedTimeDate(it.timestamp),
                     value = it.value

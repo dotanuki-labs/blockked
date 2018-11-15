@@ -34,7 +34,7 @@ class BitcoinInfoMapperTests {
         val expected = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market value across major bitcoin exchanges.",
-            prices = listOf(
+            measures = listOf(
                 TimeBasedMeasure(
                     dateTime = "2018-10-21".toDate(),
                     value = 6498.485833333333f
