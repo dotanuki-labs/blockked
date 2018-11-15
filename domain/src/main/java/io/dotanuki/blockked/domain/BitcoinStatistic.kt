@@ -4,6 +4,6 @@ data class BitcoinStatistic(
 
     val providedName: String,
     val providedDescription: String,
-    val prices: List<TimeBasedMeasure>
+    val measures: List<TimeBasedMeasure>
 
 )
