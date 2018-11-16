@@ -57,7 +57,7 @@ object BuildDashboardPresentation {
             when (unitName) {
                 "USD", "Trade Volume (USD)" -> priceFormatter.format(value)
                 "Transactions Per Block" -> "${numberFormatter.format(value)} transactions"
-                "Hash Rate TH/s" -> "${numberFormatter.format(value)} TrillionHashes/s"
+                "Hash Rate TH/s" -> "${numberFormatter.format(value)} TeraHashes/s"
                 else -> "${numberFormatter.format(value)} $unitName"
             }
         }

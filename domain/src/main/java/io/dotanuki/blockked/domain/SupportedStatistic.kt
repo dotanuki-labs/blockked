@@ -19,6 +19,11 @@ sealed class SupportedStatistic {
     object PercentualCostOfTransaction : SupportedStatistic()
     object CostPerTransaction : SupportedStatistic()
 
+    object TransactionsPerDay : SupportedStatistic()
+    object MemoryPoolSize : SupportedStatistic()
+    object OutputVolume : SupportedStatistic()
+    object EstimatedTransactionsVolume : SupportedStatistic()
+
     override fun toString() = when (this) {
         AverageMarketPrice -> "market-price"
         MarketCapitalization -> "market-cap"
@@ -34,6 +39,10 @@ sealed class SupportedStatistic {
         TotalTransactionFee -> "transaction-fees-usd"
         PercentualCostOfTransaction -> "cost-per-transaction-percent"
         CostPerTransaction -> "cost-per-transaction"
+        TransactionsPerDay -> "n-transactions"
+        MemoryPoolSize -> "mempool-size"
+        OutputVolume -> "output-volume"
+        EstimatedTransactionsVolume -> "estimated-transaction-volume-usd"
     }
 
     companion object {
@@ -51,7 +60,11 @@ sealed class SupportedStatistic {
             Difficulty,
             TotalTransactionFee,
             PercentualCostOfTransaction,
-            CostPerTransaction
+            CostPerTransaction,
+            TransactionsPerDay,
+            MemoryPoolSize,
+            OutputVolume,
+            EstimatedTransactionsVolume
         )
     }
 }
