@@ -16,6 +16,7 @@ internal object Versions {
     const val retrofit = "2.4.0"
     const val retrofitKotlinxConverter = "0.0.1"
     const val supportLibrary = "1.0.0"
+    const val aacLifecycle = "2.0.0"
     const val mpAndroidChart = "v3.0.3"
     const val groupie = "2.3.0"
     const val jUnit4 = "4.12"
@@ -53,6 +54,10 @@ object Dependencies {
     val cardView = "androidx.cardview:cardview:${Versions.supportLibrary}"
     val recyclerView = "androidx.recyclerview:recyclerview:${Versions.supportLibrary}"
     val materialDesign = "com.google.android.material:material:${Versions.supportLibrary}"
+
+    val aacLifecycle = "androidx.lifecycle:lifecycle-common:${Versions.aacLifecycle}"
+    val aacLifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.aacLifecycle}"
+
     val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupieKTX = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
@@ -79,7 +84,6 @@ object TestDependencies {
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
     val slf4jNoOp = "org.slf4j:slf4j-nop:${Versions.slf4j}"
 
-
 }
 
 
@@ -104,6 +108,8 @@ object AndroidModule {
         Dependencies.cardView,
         Dependencies.recyclerView,
         Dependencies.materialDesign,
+        Dependencies.aacLifecycle,
+        Dependencies.aacLifecycleJava8,
         Dependencies.kodein,
         Dependencies.kodeinAndroid,
         Dependencies.kodeinConf

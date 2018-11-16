@@ -8,8 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.dotanuki.blockked.domain.NetworkingIssue
+import io.dotanuki.blockked.domain.RemoteIntegrationIssue
 import io.dotanuki.common.*
 import io.dotanuki.logger.Logger
 import io.reactivex.rxkotlin.subscribeBy
@@ -28,6 +28,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
     }
 
     private val logger by kodein.instance<Logger>()
+    private val disposer by kodein.instance<Disposer>()
     private val viewModel by kodein.instance<DashboardViewModel>()
 
     private val dashboardsAdapter by lazy {
@@ -39,6 +40,7 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
         setContentView(R.layout.activity_dashboard)
         setupViews()
         loadDashboard()
+        lifecycle.addObserver(disposer)
     }
 
     private fun setupViews() {
@@ -56,12 +58,14 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun loadDashboard() {
-        viewModel
+        val toDispose = viewModel
             .retrieveDashboard()
             .subscribeBy(
                 onNext = { changeState(it) },
                 onError = { logger.e("Error -> $it") }
             )
+
+        disposer.collect(toDispose)
     }
 
     private fun changeState(event: UIEvent<List<DashboardPresentation>>) {

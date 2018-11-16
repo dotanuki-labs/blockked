@@ -4,10 +4,10 @@ apply from: "../android-module.gradle"
 dependencies {
 
     implementation project(':domain')
+    implementation project(':logger')
     implementation project(':services-meshing')
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }
-
 }

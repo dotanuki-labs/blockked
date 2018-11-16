@@ -28,6 +28,15 @@ android {
         archivesBaseName = "app-${currentVersion.name}"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions{
+        jvmTarget = '1.8'
+    }
+
     signingConfigs {
         release {
             storeFile file("../dotanuki-demos.jks")
@@ -44,7 +53,6 @@ android {
             lintOptions {
                 tasks.lint.enabled = false
             }
-
         }
 
         release {

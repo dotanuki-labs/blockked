@@ -51,7 +51,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="24sp"
+                app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="32sp"
                 app:autoSizeStepGranularity="2sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
