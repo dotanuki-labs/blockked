@@ -14,7 +14,7 @@ object BuildDashboardPresentation {
             display = DisplayModel(
                 title = it.providedName,
                 subtitle = it.providedDescription,
-                formattedValue = formatPrice(it.measures.last())
+                formattedValue = formatValue(it.measures.last(), it.unitName)
             ),
 
             chart = assembleChart(it)
@@ -29,7 +29,6 @@ object BuildDashboardPresentation {
                 maxValue = extractMaximum(measures),
                 legend = formatLegend(measures.first(), measures.last()),
                 values = buildEntries(measures)
-
             )
         }
     }
@@ -53,14 +52,20 @@ object BuildDashboardPresentation {
             ?.let { if (it == 0.0f) -10.0f else it - it * 0.05f }
             ?: throw IllegalArgumentException("No minimum")
 
-    private fun formatPrice(last: TimeBasedMeasure) = with(last) {
-        priceFormatter.format(value).replace("$", "")
-    }
+    private fun formatValue(last: TimeBasedMeasure, unitName: String) =
+        with(last) {
+            when (unitName) {
+                "USD", "Trade Volume (USD)" -> priceFormatter.format(value)
+                "Transactions Per Block" -> "${numberFormatter.format(value)} transactions"
+                "Hash Rate TH/s" -> "${numberFormatter.format(value)} TrillionHashes/s"
+                else -> "${numberFormatter.format(value)} $unitName"
+            }
+        }
 
     private fun formateDate(target: Date) = dateFormatter.format(target)
 
     private val priceFormatter = NumberFormat.getCurrencyInstance(Locale.US)
-
-    private val dateFormatter = SimpleDateFormat("yyyy-MM-dd")
+    private val numberFormatter = NumberFormat.getNumberInstance()
+    private val dateFormatter = SimpleDateFormat.getDateInstance()
 
 }

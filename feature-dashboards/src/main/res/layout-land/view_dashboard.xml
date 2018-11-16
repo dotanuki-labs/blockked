@@ -55,6 +55,9 @@
                     android:textStyle="bold"
                     android:maxLines="1"
                     app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="32sp"
+                    app:autoSizeStepGranularity="1sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             />
 

@@ -14,6 +14,7 @@ class BuildDashboardPresentationTests {
         val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market value across major bitcoin exchanges.",
+            unitName = "USD",
             measures = listOf(
                 TimeBasedMeasure(
                     dateTime = "2018-10-21T22:00:00".toDate(),
@@ -34,7 +35,7 @@ class BuildDashboardPresentationTests {
         val expected = DashboardPresentation(
 
             display = DisplayModel(
-                formattedValue = "6,511.32",
+                formattedValue = "$6,511.32",
                 title = "Market Price (USD)",
                 subtitle = "Average USD market value across major bitcoin exchanges."
             ),
@@ -42,7 +43,7 @@ class BuildDashboardPresentationTests {
             chart = ChartModel.AvaliableData(
                 minValue = 6481.425999999999f - 6481.425999999999f * 0.05f,
                 maxValue = 6511.321999999999f + 6511.321999999999f * 0.05f,
-                legend = "Data sampled, from 2018-10-21 to 2018-10-23",
+                legend = "Data sampled, from Oct 21, 2018 to Oct 23, 2018",
                 values = listOf(
                     PlottableEntry(1.0f, 6498.485833333333f),
                     PlottableEntry(2.0f, 6481.425999999999f),
@@ -62,6 +63,7 @@ class BuildDashboardPresentationTests {
         val provided = BitcoinStatistic(
             providedName = "Market Price (USD)",
             providedDescription = "Average USD market value across major bitcoin exchanges.",
+            unitName = "USD",
             measures = listOf(
                 TimeBasedMeasure(
                     dateTime = "2018-10-21T22:00:00".toDate(),
@@ -73,7 +75,7 @@ class BuildDashboardPresentationTests {
         val expected = DashboardPresentation(
 
             display = DisplayModel(
-                formattedValue = "6,498.49",
+                formattedValue = "$6,498.49",
                 title = "Market Price (USD)",
                 subtitle = "Average USD market value across major bitcoin exchanges."
             ),

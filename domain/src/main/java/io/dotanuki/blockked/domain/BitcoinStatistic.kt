@@ -4,6 +4,7 @@ data class BitcoinStatistic(
 
     val providedName: String,
     val providedDescription: String,
+    val unitName: String,
     val measures: List<TimeBasedMeasure>
 
 )

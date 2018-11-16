@@ -23,6 +23,8 @@
                 android:layout_height="wrap_content"
                 tools:text="Current Bitcoin Price"
                 android:maxLines="2"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         />
 
@@ -33,21 +35,25 @@
                 tools:text="Some description here"
                 android:textStyle="italic"
                 android:textSize="12sp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
                 android:id="@+id/displayValue"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="USD 2500.00"
                 android:maxLines="1"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="24sp"
+                app:autoSizeMaxTextSize="32sp"
+                app:autoSizeStepGranularity="2sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         />
 

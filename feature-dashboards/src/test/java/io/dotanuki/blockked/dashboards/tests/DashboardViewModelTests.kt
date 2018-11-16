@@ -19,11 +19,12 @@ class DashboardViewModelTests {
 
     lateinit var viewModel: DashboardViewModel
 
-    val mockedBrocker = mock<RetrieveStatistics>()
+    val mockedFetcher = mock<RetrieveStatistics>()
 
-    val broking = BitcoinStatistic(
+    val statistic = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
+        unitName = "USD",
         measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
@@ -34,15 +35,19 @@ class DashboardViewModelTests {
 
     @Before fun `before each test`() {
         viewModel = DashboardViewModel(
-            usecase = mockedBrocker,
+            usecase = mockedFetcher,
             machine = StateMachine()
         )
     }
 
     @Test fun `should emmit states for successful dashboard presentation`() {
-        whenever(mockedBrocker.execute())
+
+        val provided = listOf(statistic)
+        val expected = BuildDashboardPresentation(provided)
+
+        whenever(mockedFetcher.execute())
             .thenReturn(
-                Observable.just(listOf(broking))
+                Observable.just(provided)
             )
 
         given(viewModel.retrieveDashboard()) {
@@ -54,7 +59,7 @@ class DashboardViewModelTests {
             verifyForEmissions {
                 items match sequenceOf(
                     Launched,
-                    Result(BuildDashboardPresentation(listOf(broking))),
+                    Result(expected),
                     Done
                 )
             }
@@ -62,7 +67,7 @@ class DashboardViewModelTests {
     }
 
     @Test fun `should emmit states for errored broking integration`() {
-        whenever(mockedBrocker.execute())
+        whenever(mockedFetcher.execute())
             .thenReturn(
                 Observable.error<List<BitcoinStatistic>>(NetworkingIssue.ConnectionSpike)
             )

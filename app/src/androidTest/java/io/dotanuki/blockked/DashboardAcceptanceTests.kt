@@ -27,6 +27,7 @@ class DashboardAcceptanceTests {
     val infoForGraphAndDisplay = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
+        unitName = "USD",
         measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
@@ -46,6 +47,7 @@ class DashboardAcceptanceTests {
     val justOneBitcoinValue = BitcoinStatistic(
         providedName = "Market Price (USD)",
         providedDescription = "Average USD market value across major bitcoin exchanges.",
+        unitName = "USD",
         measures = listOf(
             TimeBasedMeasure(
                 dateTime = "2018-10-21T22:00:00".toDate(),
