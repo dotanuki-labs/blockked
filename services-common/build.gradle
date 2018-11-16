@@ -1,4 +1,4 @@
-apply from: "../kotlin-module.gradle"
+apply from: "../build-system/kotlin-module.gradle"
 apply plugin: 'kotlinx-serialization'
 
 dependencies {

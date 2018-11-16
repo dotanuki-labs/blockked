@@ -39,7 +39,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../dotanuki-demos.jks")
+            storeFile file("../build-system/dotanuki-demos.jks")
             storePassword "dotanuki"
             keyAlias 'dotanuki-alias'
             keyPassword "dotanuki"
