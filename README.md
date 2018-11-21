@@ -8,10 +8,10 @@
 
 ## Overview
 
-This project is a simple demo for retrieving some Blockchain.info data and presenting a simple dashboard with latest Bitcon prices.
+This project is a simple demo for retrieving some Blockchain.info data and presenting dashboards with latest Bitcon statistics, such average prices, mempool size, hashrates and so on.
 
 
-We have support for both portrait and landscape modes. This app is HEAVILY tested, and I think that it is a showcase on how we can achieve great level of confidence based on good architectural decisions.
+This app has support for both portrait and landscape modes, as well offline caching. This project is HEAVILY tested, and I think that it is a showcase on how we can achieve great level of confidence based on good architectural decisions.
 
 This project is 100% written in Kotlin.
 
@@ -25,6 +25,7 @@ This project leverages on
 - Kodein for Dependency Injection
 - Kotlinx.Serialization for automatic JSON handling
 - OkHttp3 + Retrofit for networking over HTTP
+- D8/R8 for desugaring / shrinking
 - Some custom libraries made by myself for testing
 - Fancy DSLs
 - Several tricks
