@@ -1,14 +1,21 @@
 # BLOCKKED
 
+<img src=".github/blockked-logo.png"
+ alt="Blockked logo" title="The logo himself" align="right" />
+
 > An Android companion for blockchain.info, written in Kotlin for demo purposes
+
 
 ## Overview
 
 This project is a simple demo for retrieving some Blockchain.info data and presenting a simple dashboard with latest Bitcon prices.
 
-We have supporte for both portrait and landscape modes. This app is HEAVILY tested, and I think that it is a showcase on how we can achieve great level of confidence based on good architectural decisions.
+
+We have support for both portrait and landscape modes. This app is HEAVILY tested, and I think that it is a showcase on how we can achieve great level of confidence based on good architectural decisions.
 
 This project is 100% written in Kotlin.
+
+![Blockked Screenshot](.github/blockked-screenshot.png)
 
 ## Knowledge Stack
 
@@ -17,7 +24,7 @@ This project leverages on
 - RxJava2 for end-to-end reactive programming
 - Kodein for Dependency Injection
 - Kotlinx.Serialization for automatic JSON handling
-- OkHttp3 + Retrofit for2 networking
+- OkHttp3 + Retrofit for networking over HTTP
 - Some custom libraries made by myself for testing
 - Fancy DSLs
 - Several tricks
@@ -40,7 +47,7 @@ To build run all unit tests and build a APK, execute
 
 ### Running integration tests
 
-To build run acceptance tests (Espress) for dashboard feature, execute
+To build run acceptance tests (Espresso), run
 
 ```
 ./gradlew connectedCheck
@@ -48,10 +55,12 @@ To build run acceptance tests (Espress) for dashboard feature, execute
 
 ## Credits
 
-Thanks for 
+Special thanks for 
 
-- The Noun Project for being such amazing service
-- Fruhstuck for this app icon
+- [Blockchain.com](https://blockchain.com) for the public Bitcoin API 
+- [The Noun Project](https://thenounproject.com) for being such amazing service
+- [Pablo Rosenberg](https://thenounproject.com/pabslabs) for the app icon
+
 
 ## LICENSE
 
