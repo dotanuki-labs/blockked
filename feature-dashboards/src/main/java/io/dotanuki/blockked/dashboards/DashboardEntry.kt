@@ -24,7 +24,7 @@ class DashboardEntry(private val presentation: DashboardPresentation) : Item() {
                 val dataSets = listOf(
                     LineDataSet(chart.values.map { it as Entry }, chart.legend).apply {
                         setDrawValues(false)
-                        setDrawCircles(false)
+                        setDrawCircles(chart.shouldDiscretize)
                     }
                 )
 

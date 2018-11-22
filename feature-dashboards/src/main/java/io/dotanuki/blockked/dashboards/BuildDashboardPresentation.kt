@@ -25,6 +25,7 @@ object BuildDashboardPresentation {
         if (measures.size < 2) ChartModel.Unavailable
         else {
             ChartModel.AvaliableData(
+                shouldDiscretize = measures.size <= BARELY_ONE_POINT_PER_DAY,
                 minValue = extractMinimum(measures),
                 maxValue = extractMaximum(measures),
                 legend = formatLegend(measures.first(), measures.last()),
@@ -67,5 +68,7 @@ object BuildDashboardPresentation {
     private val priceFormatter = NumberFormat.getCurrencyInstance(Locale.US)
     private val numberFormatter = NumberFormat.getNumberInstance()
     private val dateFormatter = SimpleDateFormat.getDateInstance()
+
+    private val BARELY_ONE_POINT_PER_DAY = 31
 
 }

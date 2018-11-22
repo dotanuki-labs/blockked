@@ -18,11 +18,12 @@ sealed class ChartModel {
     object Unavailable : ChartModel()
 
     data class AvaliableData(
+        val shouldDiscretize: Boolean = true,
         val minValue: Float,
         val maxValue: Float,
         val legend: String,
         val values: List<Plottable>) : ChartModel()
-    
+
 }
 
 // Because Entry from MPAndroidChart library does not implement equals() #sadpanda
