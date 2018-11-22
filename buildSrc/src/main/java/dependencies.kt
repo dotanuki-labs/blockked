@@ -75,7 +75,7 @@ object TestDependencies {
     val assertJ = "org.assertj:assertj-core:${Versions.assertJ}"
     val burster = "com.github.ubiratansoares:burster:${Versions.burster}"
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
-    val mockitoDexMaker = "com.linkedin.dexmaker:dexmaker-mockito-inline:${Versions.mockitoDexMaker}"
+    val mockitoDexMaker = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.mockitoDexMaker}"
     val androidTestRunner = "com.android.support.test:runner:${Versions.androidJUnit}"
     val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
     val roboletric = "org.robolectric:robolectric:${Versions.roboletric}"
