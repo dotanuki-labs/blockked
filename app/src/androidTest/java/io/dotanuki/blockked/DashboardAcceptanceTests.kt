@@ -77,7 +77,7 @@ class DashboardAcceptanceTests {
             }
 
             dashboard {
-                should have DisplayAndGraph(bitcoinValue = "6,511.32")
+                should have DisplayAndGraph(bitcoinValue = "$6,511.32")
             }
         }
     }
@@ -103,7 +103,7 @@ class DashboardAcceptanceTests {
             }
 
             dashboard {
-                should have OnlyDisplay(bitcoinValue = "6,498.48")
+                should have OnlyDisplay(bitcoinValue = "$6,498.48")
             }
         }
     }

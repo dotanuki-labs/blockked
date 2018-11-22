@@ -1,10 +1,12 @@
 package io.dotanuki.blockked
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import io.dotanuki.blockked.domain.BitcoinStatistic
+import io.dotanuki.blockked.domain.FetchBitcoinStatistic
 import io.reactivex.Observable
 
-fun given(broker: BitcoinBroker, block: ScenarioHook.() -> Unit) =
+fun given(broker: FetchBitcoinStatistic, block: ScenarioHook.() -> Unit) =
     ScenarioHook(ScenarioComposer(broker)).apply { block() }
 
 class ScenarioHook(private val composer: ScenarioComposer) {
@@ -30,10 +32,10 @@ sealed class HandledCondition
 class IssueFound(val error: Throwable) : HandledCondition()
 class DataFechted(val info: BitcoinStatistic) : HandledCondition()
 
-class ScenarioComposer(private val broker: BitcoinBroker) {
+class ScenarioComposer(private val broker: FetchBitcoinStatistic) {
 
     fun fetchFailed(condition: IssueFound) {
-        whenever(broker.marketPrice())
+        whenever(broker.execute(any(), any()))
             .thenReturn(
                 Observable.error(condition.error)
             )
@@ -41,7 +43,7 @@ class ScenarioComposer(private val broker: BitcoinBroker) {
 
 
     fun marketPriceFetched(data: DataFechted) {
-        whenever(broker.marketPrice()).thenReturn(
+        whenever(broker.execute(any(), any())).thenReturn(
             Observable.just(data.info)
         )
     }
