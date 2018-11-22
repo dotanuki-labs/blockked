@@ -40,7 +40,7 @@ This project leverages on
 
 ### Building from CLI
 
-To build run all unit tests and build a APK, execute
+To run all unit tests and build a APK, execute
 
 ```
 ./gradlew build
@@ -48,7 +48,7 @@ To build run all unit tests and build a APK, execute
 
 ### Running integration tests
 
-To build run acceptance tests (Espresso), run
+To run acceptance tests powered by Instrumentation + Espresso, execute
 
 ```
 ./gradlew connectedCheck
