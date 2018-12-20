@@ -26,6 +26,7 @@ android {
         vectorDrawables.generatedDensities = []
 
         archivesBaseName = "app-${currentVersion.name}"
+        resConfigs "en"
     }
 
     compileOptions {
@@ -62,7 +63,6 @@ android {
             proguardFiles file('../proguard').listFiles().toList().toArray()
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
-
     }
 }
 

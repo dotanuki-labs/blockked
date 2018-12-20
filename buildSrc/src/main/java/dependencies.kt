@@ -1,36 +1,35 @@
 // Versions for project parameters and dependencies
 
 internal object Kotlin {
-    const val version = "1.2.71"
+    const val version = "1.3.11"
 }
 
 internal object Versions {
 
-    const val kotlinxSerialization = "0.6.2"
-    const val androidGradlePlugin = "3.2.1"
+    const val kotlinxSerialization = "0.9.1"
+    const val androidGradlePlugin = "3.3.0-rc02"
     const val testLogger = "1.4.0"
-    const val rxJava = "2.2.3"
+    const val rxJava = "2.2.4"
     const val rxKotlin = "2.2.0"
     const val rxAndroid = "2.1.0"
-    const val okhttp = "3.11.0"
-    const val retrofit = "2.4.0"
-    const val retrofitKotlinxConverter = "0.0.1"
+    const val okhttp = "3.12.0"
+    const val retrofit = "2.5.0"
+    const val retrofitKotlinxConverter = "0.2.0"
     const val supportLibrary = "1.0.0"
     const val aacLifecycle = "2.0.0"
     const val mpAndroidChart = "v3.0.3"
     const val groupie = "2.3.0"
     const val jUnit4 = "4.12"
-    const val burster = "0.1.0"
+    const val burster = "0.1.1"
     const val assertJ = "2.9.1"
     const val mockitoKotlin = "2.0.0-RC3"
     const val mockitoDexMaker = "2.19.0"
-    const val androidJUnit = "1.0.2"
-    const val espressoCore = "3.0.2"
+    const val androidJUnit = "1.1.0"
+    const val espressoCore = "3.1.0"
     const val roboletric = "4.0"
-    const val barista = "2.7.0"
     const val rxEspressoIdler = "0.9.0"
-    const val tite = "0.1.0"
-    const val kodeinDI = "5.3.0"
+    const val tite = "0.1.1"
+    const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
 
 }
@@ -76,11 +75,13 @@ object TestDependencies {
     val burster = "com.github.ubiratansoares:burster:${Versions.burster}"
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     val mockitoDexMaker = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.mockitoDexMaker}"
-    val androidTestRunner = "com.android.support.test:runner:${Versions.androidJUnit}"
-    val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
-    val roboletric = "org.robolectric:robolectric:${Versions.roboletric}"
-    val rxIdler = "com.squareup.rx.idler:rx2-idler:${Versions.rxEspressoIdler}"
-    val barista = "com.schibsted.spain:barista:${Versions.barista}"
+    val androidTestCore = "androidx.test:core:${Versions.androidJUnit}"
+    val androidTestCoreKtx = "androidx.test:core-ktx:${Versions.androidJUnit}"
+    val androidTestExtJunit = "androidx.test.ext:junit:${Versions.androidJUnit}"
+    val androidTestExtJunitKtx = "androidx.test.ext:junit-ktx:${Versions.androidJUnit}"
+    val androidTestRunner = "androidx.test:runner:${Versions.androidJUnit}"
+    val androidTestRules = "androidx.test:rules:${Versions.androidJUnit}"
+    val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
     val slf4jNoOp = "org.slf4j:slf4j-nop:${Versions.slf4j}"
 
@@ -90,8 +91,8 @@ object TestDependencies {
 object BuildPlugins {
 
     val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
+    val kotlinxSerializiationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
     val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
-    val kotlinxSerializiationPlugin = "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:${Versions.kotlinxSerialization}"
     val testLoggerPlugin = "com.adarshr:gradle-test-logger-plugin:${Versions.testLogger}"
 
 }
@@ -129,8 +130,12 @@ object AndroidModule {
         TestDependencies.slf4jNoOp,
         TestDependencies.assertJ,
         TestDependencies.androidTestRunner,
-        TestDependencies.barista,
-        TestDependencies.rxIdler,
+        TestDependencies.androidTestRules,
+        TestDependencies.androidTestCore,
+        TestDependencies.androidTestCoreKtx,
+        TestDependencies.androidTestExtJunit,
+        TestDependencies.androidTestExtJunitKtx,
+        TestDependencies.espresso,
         TestDependencies.kotlinReflect,
         TestDependencies.mockitoKotlin,
         TestDependencies.mockitoDexMaker
