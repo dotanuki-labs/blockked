@@ -1,12 +1,14 @@
 package io.dotanuki.blockked
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
-import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import io.dotanuki.blockked.SwipeRefreshLayoutMatchers.isRefreshing
-import org.hamcrest.Matchers
+import org.hamcrest.BaseMatcher
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.Matchers.not
+
 
 fun assertThat(block: DashboardVerifications.() -> Unit) =
     DashboardVerifications().apply { block() }
@@ -30,17 +32,9 @@ class LoadingStateVerifier {
 class LoadingStateChecks {
 
     infix fun be(target: Visibility) = when (target) {
-        is displayedWith -> assertDisplayed(target.message)
+        is displayedWith -> checkDisplayed(target.message)
         is displayed -> checkRefreshing()
         is hidden -> checkNotRefreshing()
-    }
-
-    private fun checkNotRefreshing() {
-        onView(withId(R.id.swipeToRefresh)).check(matches(Matchers.not(isRefreshing())))
-    }
-
-    private fun checkRefreshing() {
-        onView(withId(R.id.swipeToRefresh)).check(matches(isRefreshing()))
     }
 }
 
@@ -55,9 +49,9 @@ class DashboardContentVerifier {
 class ErrorStateChecks {
 
     infix fun be(target: Visibility) = when (target) {
-        is displayedWith -> assertDisplayed(target.message)
-        is displayed -> assertDisplayed(R.id.errorStateLabel)
-        is hidden -> assertNotDisplayed(R.id.errorStateLabel)
+        is displayedWith -> checkDisplayed(target.message)
+        is displayed -> checkDisplayed(R.id.errorStateLabel)
+        is hidden -> checkHidden(R.id.errorStateLabel)
     }
 }
 
@@ -65,17 +59,13 @@ class DashboardContentCheck {
 
     infix fun have(content: DashboardContent) = when (content) {
 
-        is noEntries -> {
-            assertNotDisplayed(R.id.dashboarView)
-        }
+        is noEntries -> checkHidden(R.id.dashboarView)
 
-        is OnlyDisplay -> {
-            assertDisplayed(content.bitcoinValue)
-        }
+        is OnlyDisplay -> checkDisplayed(content.bitcoinValue)
 
         is DisplayAndGraph -> {
-            assertDisplayed(R.id.dashboarView)
-            assertDisplayed(content.bitcoinValue)
+            checkDisplayed(R.id.dashboarView)
+            checkDisplayed(content.bitcoinValue)
         }
     }
 
@@ -91,3 +81,50 @@ sealed class DashboardContent
 data class OnlyDisplay(val bitcoinValue: String) : DashboardContent()
 class DisplayAndGraph(val bitcoinValue: String) : DashboardContent()
 object noEntries : DashboardContent()
+
+private fun checkDisplayed(target: String) {
+    onView(firstViewOf(withText(target))).check(matches(isDisplayed()))
+}
+
+private fun checkDisplayed(target: Int) {
+    onView(firstViewOf(withId(target)))
+        .check(matches(isDisplayed()))
+}
+
+private fun checkHidden(target: String) {
+    onView(firstViewOf(withText(target)))
+        .check(matches(not(isDisplayed())))
+}
+
+private fun checkHidden(target: Int) {
+    onView(firstViewOf(withId(target)))
+        .check(matches(not(isDisplayed())))
+}
+
+private fun checkNotRefreshing() {
+    onView(withId(R.id.swipeToRefresh))
+        .check(matches(not(isRefreshing())))
+}
+
+private fun checkRefreshing() {
+    onView(withId(R.id.swipeToRefresh))
+        .check(matches(isRefreshing()))
+}
+
+private fun <T> firstViewOf(matcher: Matcher<T>): Matcher<T> {
+    return object : BaseMatcher<T>() {
+        private var isFirst = true
+
+        override fun matches(item: Any): Boolean {
+            if (isFirst && matcher.matches(item)) {
+                isFirst = false
+                return true
+            }
+            return false
+        }
+
+        override fun describeTo(description: Description) {
+            description.appendText("should return first matching item")
+        }
+    }
+}

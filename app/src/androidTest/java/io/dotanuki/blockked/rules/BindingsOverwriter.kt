@@ -1,6 +1,6 @@
 package io.dotanuki.blockked.rules
 
-import android.support.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import io.dotanuki.blockked.BlockkedApp
 import org.junit.rules.ExternalResource
 import org.kodein.di.Kodein
@@ -12,6 +12,10 @@ class BindingsOverwriter(private val bindings: Kodein.MainBuilder.() -> Unit) : 
         configurableKodein.addConfig { bindings() }
     }
 
-    private fun app() = InstrumentationRegistry.getTargetContext().applicationContext as BlockkedApp
+    private fun app() =
+        InstrumentationRegistry
+            .getInstrumentation()
+            .targetContext
+            .applicationContext as BlockkedApp
 
 }

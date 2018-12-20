@@ -1,8 +1,8 @@
 package io.dotanuki.blockked
 
-import android.support.test.espresso.matcher.BoundedMatcher
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.test.espresso.matcher.BoundedMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
