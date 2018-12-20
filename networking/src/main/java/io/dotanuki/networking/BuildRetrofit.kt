@@ -1,6 +1,6 @@
 package io.dotanuki.networking
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.stringBased
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.serializationConverterFactory
 import kotlinx.serialization.json.JSON
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -14,13 +14,10 @@ object BuildRetrofit {
             baseUrl(apiURL)
             client(httpClient)
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            addConverterFactory(stringBased(contentType, json::parse, json::stringify))
+            addConverterFactory(serializationConverterFactory(contentType, JSON.nonstrict))
             build()
         }
 
-    private val json by lazy {
-        JSON.nonstrict
-    }
 
     private val contentType by lazy {
         MediaType.parse("application/json")!!
