@@ -21,11 +21,12 @@ This project is 100% written in Kotlin.
 
 This project leverages on
 
+- 100% powered by AndroidX (no Jetfier!)
 - RxJava2 for end-to-end reactive programming
 - Kodein for Dependency Injection
 - Kotlinx.Serialization for automatic JSON handling
 - OkHttp3 + Retrofit for networking over HTTP
-- D8/R8 for desugaring / shrinking
+- D8/R8 for desugaring / shrinking / optmizing
 - Some custom libraries made by myself for testing
 - Fancy DSLs
 - Several tricks
@@ -35,12 +36,11 @@ This project leverages on
 
 ### Running from IDE
 
-- Ensure you have Android Studio 3.2.1 or newer
-- Is recommend to install Kotlinx.Serialization plugin on your IDE ([instructions](https://github.com/Kotlin/kotlinx.serialization))
+- Ensure you have Android Studio 3.3 canary or newer
 
 ### Building from CLI
 
-To run all unit tests and build a APK, execute
+To run all unit tests and build an APK, execute
 
 ```
 ./gradlew build
