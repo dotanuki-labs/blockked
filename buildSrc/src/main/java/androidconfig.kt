@@ -9,7 +9,7 @@ object AndroidConfig {
 
     val buildToolsVersion = "28.0.3"
 
-    val instrumentationTestRunner = "android.support.test.runner.AndroidJUnitRunner"
+    val instrumentationTestRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 }
 
