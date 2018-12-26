@@ -2,10 +2,10 @@ package io.dotanuki.blockked.dashboards
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.dotanuki.blockked.domain.NetworkingIssue
@@ -82,10 +82,21 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
 
         when (reason) {
             is NetworkingIssue,
-            is RemoteIntegrationIssue -> errorStateLabel.apply {
-                Toast.makeText(this@DashboardActivity, "$reason", Toast.LENGTH_LONG).show()
+            is RemoteIntegrationIssue -> {
+                presentError(reason.toString())
             }
         }
+    }
+
+    private fun presentError(message: String) {
+        if (dashboardsAdapter.itemCount == 0) {
+            errorStateLabel.apply {
+                text = message
+                visibility = View.VISIBLE
+            }
+        }
+
+        Snackbar.make(dashboardsRoot, message, Snackbar.LENGTH_LONG).show()
     }
 
     private fun presentDashboard(dashboards: List<DashboardPresentation>) {
@@ -102,6 +113,8 @@ class DashboardActivity : AppCompatActivity(), KodeinAware {
     private fun startExecution() {
         dashboarView.visibility = View.INVISIBLE
         swipeToRefresh.isRefreshing = true
+        errorStateLabel.visibility = View.GONE
+
     }
 
     private fun finishExecution() {

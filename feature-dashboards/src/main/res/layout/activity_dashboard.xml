@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dashboardsRoot"
         android:fitsSystemWindows="true"
         android:background="@color/screenBG"
         android:layout_width="match_parent"
@@ -53,7 +54,7 @@
             android:layout_margin="32dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimary"
-            tools:text="Something went wrong ..."
+            android:text="@string/error_state_label"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

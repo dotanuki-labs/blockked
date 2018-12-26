@@ -1,6 +1,6 @@
 package io.dotanuki.blockked
 
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockitokotlin2.mock
@@ -20,54 +20,43 @@ import org.kodein.di.generic.provider
 @RunWith(AndroidJUnit4::class)
 class DashboardAcceptanceTests {
 
-    private val broker = mock<FetchBitcoinStatistic>()
-
-    @get:Rule val overwriter = BindingsOverwriter {
-
-        bind<FetchBitcoinStatistic>(overrides = true) with provider {
-            broker
-        }
-    }
-
     init {
         RxJavaPlugins.setInitIoSchedulerHandler(
             Rx2IdlerKtx.create("RxJava2-IOScheduler")
         )
     }
 
-    val infoForGraphAndDisplay = BitcoinStatistic(
-        providedName = "Market Price (USD)",
-        providedDescription = "Average USD market value across major bitcoin exchanges.",
-        unitName = "USD",
-        measures = listOf(
-            TimeBasedMeasure(
-                dateTime = "2018-10-21T22:00:00".toDate(),
-                value = 6498.48f
-            ),
-            TimeBasedMeasure(
-                dateTime = "2018-10-22T22:00:00".toDate(),
-                value = 6481.42f
-            ),
-            TimeBasedMeasure(
-                dateTime = "2018-10-23T22:00:00".toDate(),
-                value = 6511.32f
+
+    private val broker = mock<FetchBitcoinStatistic>()
+
+    @get:Rule val overwriter = BindingsOverwriter {
+        bind<FetchBitcoinStatistic>(overrides = true) with provider {
+            broker
+        }
+    }
+
+    @Test
+    fun atDashboardLaunch_givenSuccessAndSeveralBitcoinValues_ThenDisplayAndGraphShown() {
+
+        val infoForGraphAndDisplay = BitcoinStatistic(
+            providedName = "Market Price (USD)",
+            providedDescription = "Average USD market value across major bitcoin exchanges.",
+            unitName = "USD",
+            measures = listOf(
+                TimeBasedMeasure(
+                    dateTime = "2018-10-21T22:00:00".toDate(),
+                    value = 6498.48f
+                ),
+                TimeBasedMeasure(
+                    dateTime = "2018-10-22T22:00:00".toDate(),
+                    value = 6481.42f
+                ),
+                TimeBasedMeasure(
+                    dateTime = "2018-10-23T22:00:00".toDate(),
+                    value = 6511.32f
+                )
             )
         )
-    )
-
-    val justOneBitcoinValue = BitcoinStatistic(
-        providedName = "Market Price (USD)",
-        providedDescription = "Average USD market value across major bitcoin exchanges.",
-        unitName = "USD",
-        measures = listOf(
-            TimeBasedMeasure(
-                dateTime = "2018-10-21T22:00:00".toDate(),
-                value = 6498.48f
-            )
-        )
-    )
-
-    @Test fun atDashboardLaunch_givenSuccessAndSeveralBitcoinValues_ThenDisplayAndGraphShown() {
 
         given(broker) {
             defineScenario {
@@ -75,8 +64,9 @@ class DashboardAcceptanceTests {
             }
         }
 
-        val scenario = launchActivity<DashboardActivity>()
-        scenario.moveToState(Lifecycle.State.RESUMED)
+        val scenario = launchActivity<DashboardActivity>().apply {
+            moveToState(RESUMED)
+        }
 
         assertThat {
 
@@ -98,14 +88,27 @@ class DashboardAcceptanceTests {
 
     @Test fun atDashboardLaunch_givenJustOneBitcoinValue_ThenOnlyDisplayIsShown() {
 
+        val justOneValueAtChart = BitcoinStatistic(
+            providedName = "Market Price (USD)",
+            providedDescription = "Average USD market value across major bitcoin exchanges.",
+            unitName = "USD",
+            measures = listOf(
+                TimeBasedMeasure(
+                    dateTime = "2018-10-21T22:00:00".toDate(),
+                    value = 6498.48f
+                )
+            )
+        )
+
         given(broker) {
             defineScenario {
-                criteria = DataFechted(justOneBitcoinValue)
+                criteria = DataFechted(justOneValueAtChart)
             }
         }
 
-        val scenario = launchActivity<DashboardActivity>()
-        scenario.moveToState(Lifecycle.State.RESUMED)
+        val scenario = launchActivity<DashboardActivity>().apply {
+            moveToState(RESUMED)
+        }
 
         assertThat {
 
@@ -144,8 +147,9 @@ class DashboardAcceptanceTests {
             }
         }
 
-        val scenario = launchActivity<DashboardActivity>()
-        scenario.moveToState(Lifecycle.State.RESUMED)
+        val scenario = launchActivity<DashboardActivity>().apply {
+            moveToState(RESUMED)
+        }
 
         assertThat {
 
@@ -153,9 +157,9 @@ class DashboardAcceptanceTests {
                 should be hidden
             }
 
-//            errorReport {
-//                should be displayedWith(error.toString())
-//            }
+            errorReport {
+                should be displayedWith(error.toString())
+            }
 
             dashboard {
                 should have noEntries
