@@ -7,7 +7,7 @@ internal object Kotlin {
 internal object Versions {
 
     const val kotlinxSerialization = "0.9.1"
-    const val androidGradlePlugin = "3.3.0-rc02"
+    const val androidGradlePlugin = "3.3.0-rc03"
     const val testLogger = "1.4.0"
     const val rxJava = "2.2.4"
     const val rxKotlin = "2.2.0"
@@ -26,8 +26,6 @@ internal object Versions {
     const val mockitoDexMaker = "2.19.0"
     const val androidJUnit = "1.1.0"
     const val espressoCore = "3.1.0"
-    const val roboletric = "4.0"
-    const val rxEspressoIdler = "0.9.0"
     const val tite = "0.1.1"
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
