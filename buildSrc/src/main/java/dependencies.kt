@@ -1,13 +1,13 @@
 // Versions for project parameters and dependencies
 
 internal object Kotlin {
-    const val version = "1.3.11"
+    const val version = "1.3.20"
 }
 
 internal object Versions {
 
     const val kotlinxSerialization = "0.9.1"
-    const val androidGradlePlugin = "3.3.0-rc03"
+    const val androidGradlePlugin = "3.3.0"
     const val testLogger = "1.4.0"
     const val rxJava = "2.2.4"
     const val rxKotlin = "2.2.0"
